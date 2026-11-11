@@ -55,11 +55,11 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
   <div id="writing" class="writing">
     <div class="section-head">
       <h2>{% t "Writing", "Ysgrifennu" %}</h2>
-      <a href="https://groundedbymarzooq.substack.com">{% t "All essays on Grounded", "Pob ysgrif ar Grounded" %}</a>
+      <a href="https://groundedbymarzooq.substack.com" target="_blank" rel="noopener">{% t "All essays on Grounded", "Pob ysgrif ar Grounded" %}</a>
     </div>
     <div class="posts">
       {%- for post in writing | featuredPosts(substack) %}
-      <a class="post" href="{{ post.url }}">
+      <a class="post" href="{{ post.url }}" target="_blank" rel="noopener">
         {% if post.cover %}<img src="{{ post.cover }}" alt="" loading="lazy">{% else %}<span class="cover-blank" aria-hidden="true"></span>{% endif %}
         <span class="post-text">
           <span class="post-title">{{ post.title }}</span>
