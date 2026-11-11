@@ -1,0 +1,234 @@
+{
+  "pdf": "",
+  "sections": [
+    {
+      "id": "work",
+      "title": "Work",
+      "title_cy": "Gwaith",
+      "entries": [
+        {
+          "title": "Telephone Fundraiser",
+          "org": "University of Bristol (Temporary Staffing Service)",
+          "dates": "October 2026 – Present",
+          "sub": "",
+          "current": true,
+          "bullets": []
+        },
+        {
+          "title": "Freelance Photographer",
+          "org": "Self-employed",
+          "dates": "November 2025 – Present",
+          "sub": "",
+          "current": true,
+          "bullets": [
+            "Graduation, formal, society event and headshot shoots in Bristol"
+          ]
+        },
+        {
+          "title": "Data Assistant",
+          "org": "Zapmap",
+          "dates": "January 2025 – July 2026",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Provided timely and effective customer support via Freshdesk, resolving user queries and issues related to charging point data and app functionality.",
+            "Routinely updated and maintained critical data for the EV charging map, ensuring information reflects real-world conditions.",
+            "Contributed to consultancy projects by collecting and collating crucial data related to legal compliance in the EV charging sector."
+          ]
+        },
+        {
+          "title": "Optical Retail Assistant",
+          "org": "Specsavers, John Lewis Opticians, Stewart Greenberg Opticians",
+          "dates": "October 2022 – July 2024",
+          "sub": "Specsavers, Oct 2022 – Dec 2023 · John Lewis Opticians, Dec 2023 – May 2024 · Stewart Greenberg Opticians, Jun – Jul 2024",
+          "current": false,
+          "bullets": [
+            "Independently managed store operations at John Lewis during solo shifts, overseeing sales, customer service, and daily running of the branch.",
+            "Advised customers on glasses selection across optical and aesthetic needs, applying styling expertise to guide purchasing decisions.",
+            "Operated pre-test and pre-screening machinery to capture ophthalmic images and support clinical assessments, including collecting information from emergency patients to assist optometrists.",
+            "Completed NHS Wales optical assistant training and the Specsavers/Luxottica Leonardo sales programme, applying retail KPIs to focus sales strategy.",
+            "Managed patient data and supplier ordering across paper and digital systems."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "title_cy": "Ymchwil",
+      "entries": [
+        {
+          "title": "Research Intern",
+          "org": "School of Sociology, Politics and International Studies, University of Bristol",
+          "dates": "June 2026 – July 2026",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Merged and analysed two large statistical government datasets, identifying methodological issues and producing structured summaries for academic review.",
+            "Conducted qualitative analysis of official government communications and public rhetoric, building an organised source library by theme.",
+            "Formatted and archived citations and source documentation to academic standard for a research document under senior review."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership and volunteering",
+      "title_cy": "Arweinyddiaeth a gwirfoddoli",
+      "entries": [
+        {
+          "title": "President",
+          "org": "University of Bristol Academic Research Society",
+          "dates": "March 2026 – Present",
+          "sub": "Vice President, September 2025 – March 2026",
+          "current": true,
+          "bullets": [
+            "Lead a 200-member society open to students across every faculty, with final responsibility for the committee, events and resources.",
+            "Ran the Research Team Programme, placing 30+ students into small research groups and supporting them through to publication.",
+            "Organised and host talks and workshops with academics and external organisations, including think tanks, with 15+ events planned for 2026/27."
+          ]
+        },
+        {
+          "title": "Volunteer",
+          "org": "Muslim Engagement and Development (MEND)",
+          "dates": "December 2023 – Present",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Assisted in running charity dinners to raise money against Islamophobia and for Muslim causes in Britain and raised £1000s for the organisation.",
+            "Worked with regional managers to deliver training to university staff.",
+            "Sat on a panel discussion at the Welsh Parliament as a youth expert on Islamophobia."
+          ]
+        },
+        {
+          "title": "Volunteer",
+          "org": "Muslim Council of Wales",
+          "dates": "February 2024 – Present",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Managed and executed community outreach campaigns to increase attendance at quarterly meetings.",
+            "Documented and edited accurate meeting minutes, ensuring clear communication of action items brought up by stakeholders."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "title_cy": "Addysg",
+      "entries": [
+        {
+          "title": "BSc Mathematics and Philosophy",
+          "org": "University of Bristol",
+          "dates": "September 2024 – August 2027",
+          "sub": "",
+          "current": true,
+          "bullets": [
+            "Expected 1st"
+          ]
+        },
+        {
+          "title": "A-Levels",
+          "org": "St David's Catholic Sixth Form College",
+          "dates": "September 2022 – August 2024",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Attained A*AAA, with the A* in Mathematics"
+          ]
+        },
+        {
+          "title": "GCSEs",
+          "org": "Willows High School",
+          "dates": "September 2017 – August 2022",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Attained 9 A*s and 3 As"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speaking",
+      "title": "Speaking and writing",
+      "title_cy": "Siarad ac ysgrifennu",
+      "entries": [
+        {
+          "title": "Founder and Writer",
+          "org": "Grounded (Substack)",
+          "dates": "February 2025 – Present",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Long-form essays on ethics, faith and society"
+          ]
+        },
+        {
+          "title": "Speaker, Think",
+          "org": "Mensa, Balliol College, Oxford",
+          "dates": "2025",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Gave an overview of Islamic philosophy"
+          ]
+        },
+        {
+          "title": "Winner",
+          "org": "DebateMate Cup",
+          "dates": "2022",
+          "sub": "",
+          "current": false,
+          "bullets": []
+        },
+        {
+          "title": "UK Debate Representative",
+          "org": "Dubai World Expo",
+          "dates": "2021",
+          "sub": "",
+          "current": false,
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Skills and languages",
+      "title_cy": "Sgiliau ac ieithoedd",
+      "entries": [
+        {
+          "title": "Languages",
+          "org": "",
+          "dates": "",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "English (native); Urdu (conversational); Welsh (foundation, actively learning)"
+          ]
+        },
+        {
+          "title": "Technical",
+          "org": "",
+          "dates": "",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Built and maintained web chatbot applications reaching 300,000+ users, experienced with Freshdesk and digital patient record systems"
+          ]
+        },
+        {
+          "title": "Other",
+          "org": "",
+          "dates": "",
+          "sub": "",
+          "current": false,
+          "bullets": [
+            "Public speaking/debating, leadership, event coordination and stakeholder management"
+          ]
+        }
+      ]
+    }
+  ]
+}

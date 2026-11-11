@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Photography
+permalink: /photography/
+---
+<section class="page-head">
+  <h1>{% t "Photography", "Ffotograffiaeth" %}</h1>
+  <p class="intro">{% t "Mostly Wales and wherever I'm travelling, usually as the light goes. I also shoot graduations, formals, society events and headshots in Bristol.", "Cymru gan amlaf, a lle bynnag dw i'n teithio, fel arfer wrth i'r golau fynd. Dw i hefyd yn tynnu lluniau graddio, digwyddiadau ffurfiol, digwyddiadau cymdeithasau a lluniau proffil ym Mryste." %}</p>
+</section>
+
+<div class="tabs" role="tablist" aria-label="Photography sections">
+  <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true">{% t "Personal work", "Gwaith personol" %}</button>
+  <button type="button" role="tab" id="tab-commissions" aria-controls="panel-commissions" aria-selected="false">{% t "Commissions", "Comisiynau" %}</button>
+</div>
+
+<div id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
+  <div class="gallery">
+    {%- for p in photos.personal %}
+    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
+      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" loading="lazy">
+    </button>
+    {%- endfor %}
+  </div>
+</div>
+
+<div id="panel-commissions" role="tabpanel" aria-labelledby="tab-commissions" hidden>
+  <div class="book band">
+    <p>{% t "Graduations, formals, society events and headshots in Bristol. Get in touch for a quote.", "Graddio, digwyddiadau ffurfiol, digwyddiadau cymdeithasau a lluniau proffil ym Mryste. Cysylltwch am bris." %}</p>
+    <a class="amber-link" href="mailto:me@marzooq.co.uk?subject=Photography%20enquiry">{% t "Email me to book →", "E-bostiwch fi i archebu →" %}</a>
+  </div>
+  <div class="gallery">
+    {%- for p in photos.commissions %}
+    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
+      <img src="{{ p.image }}" alt="{{ p.caption or 'Commissioned photograph by Marzooq Subhani' }}" loading="lazy">
+    </button>
+    {%- endfor %}
+  </div>
+</div>
+
+<dialog id="lightbox" aria-label="Photo viewer">
+  <button type="button" class="lb-close" aria-label="Close">×</button>
+  <img alt="">
+  <p class="label"></p>
+</dialog>

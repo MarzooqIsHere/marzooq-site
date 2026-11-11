@@ -1,0 +1,85 @@
+# Admin page for marzooq.co.uk (Sveltia CMS).
+# Sign in at https://marzooq.co.uk/admin/ with "Sign in with Token" (see SETUP.md).
+
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/marzooq-site   # <- change to your GitHub username / repo name
+  branch: main
+
+media_folder: src/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: content
+    label: Site content
+    files:
+
+      - name: now
+        label: Now
+        file: src/_data/now.json
+        fields:
+          - { name: updated, label: "Updated (e.g. November 2026)", widget: string }
+          - name: items
+            label: What I'm doing right now
+            widget: list
+            field: { name: item, label: Item, widget: string }
+
+      - name: photos
+        label: Photography
+        file: src/_data/photos.json
+        fields:
+          - name: personal
+            label: Personal work
+            hint: "Drag to reorder. Tick 'Show on homepage' on up to three photos."
+            widget: list
+            fields:
+              - { name: image, label: Photo, widget: image }
+              - { name: caption, label: Caption (place), widget: string, required: false }
+              - { name: featured, label: Show on homepage, widget: boolean, default: false }
+          - name: commissions
+            label: Commissions
+            widget: list
+            fields:
+              - { name: image, label: Photo, widget: image }
+              - { name: caption, label: Caption, widget: string, required: false }
+
+      - name: writing
+        label: Featured writing
+        file: src/_data/writing.json
+        fields:
+          - name: featured
+            label: Featured essays
+            hint: "Paste the Substack link. Title and cover image are pulled from Substack automatically. Leave the list empty to show your three latest posts."
+            widget: list
+            fields:
+              - { name: url, label: Substack link, widget: string }
+              - { name: blurb, label: "Blurb (optional, replaces the Substack subtitle)", widget: string, required: false }
+
+      - name: cv
+        label: CV
+        file: src/_data/cv.json
+        fields:
+          - { name: pdf, label: CV PDF, widget: file, media_folder: /src/files, public_folder: /files }
+          - name: sections
+            label: Sections
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: id, label: "Section ID (one word, lowercase)", widget: string }
+              - { name: title, label: Section title, widget: string }
+              - { name: title_cy, label: Section title in Welsh, widget: string, required: false }
+              - name: entries
+                label: Entries
+                widget: list
+                summary: "{{fields.title}}, {{fields.org}}"
+                fields:
+                  - { name: title, label: Job title / role, widget: string }
+                  - { name: org, label: Organisation, widget: string, required: false }
+                  - { name: dates, label: "Dates (e.g. October 2026 – Present)", widget: string, required: false }
+                  - { name: sub, label: "Extra line (optional, e.g. previous role or branches)", widget: string, required: false }
+                  - { name: current, label: "Current (shows under 'Right now')", widget: boolean, default: false }
+                  - name: bullets
+                    label: Bullet points
+                    widget: list
+                    required: false
+                    field: { name: bullet, label: Bullet, widget: text }

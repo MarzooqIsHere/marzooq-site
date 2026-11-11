@@ -1,0 +1,51 @@
+---
+layout: base.njk
+title: CV
+permalink: /cv/
+---
+<section class="page-head row">
+  <h1>CV</h1>
+  {% if cv.pdf %}<a class="amber-link" href="{{ cv.pdf }}">{% t "Download PDF →", "Lawrlwytho PDF →" %}</a>{% endif %}
+</section>
+
+{% set current = cv | currentEntries %}
+{% if current.length %}
+<section class="band current">
+  <span class="label amber">{% t "Right now", "Ar hyn o bryd" %}</span>
+  <div class="current-list">
+    {%- for e in current %}
+    <div class="current-row">
+      <span class="c-title">{{ e.title }}</span>
+      <span class="c-org">{{ e.org }}</span>
+      <span class="c-dates">{{ e.dates }}</span>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="cv-sections">
+  {%- for s in cv.sections %}
+  <div class="cv-section">
+    <button type="button" class="cv-toggle" aria-expanded="false" aria-controls="sec-{{ s.id }}">
+      <span class="cv-title">{% t s.title, s.title_cy %}</span>
+      <span class="sign" aria-hidden="true">+</span>
+    </button>
+    <div class="cv-body" id="sec-{{ s.id }}" hidden>
+      {%- for e in s.entries %}
+      <div class="entry">
+        <span class="e-dates">{{ e.dates }}</span>
+        <div class="e-main">
+          <span class="e-title">{{ e.title }}</span>
+          {% if e.org %}<span class="e-org">{{ e.org }}</span>{% endif %}
+          {% if e.sub %}<span class="e-sub">{{ e.sub }}</span>{% endif %}
+          {% if e.bullets.length %}
+          <ul>{% for b in e.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
+          {% endif %}
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endfor %}
+</section>
