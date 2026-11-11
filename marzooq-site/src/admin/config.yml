@@ -3,7 +3,7 @@
 
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/marzooq-site   # <- change to your GitHub username / repo name
+  repo: MarzooqIsHere/marzooq-site   # <- change to your GitHub username / repo name
   branch: main
 
 media_folder: src/images/uploads
