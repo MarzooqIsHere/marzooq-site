@@ -56,7 +56,7 @@
     },
     {
       "image": "/images/personal/personal-07.jpg",
-      "caption": "Plymouth Hoe",
+      "caption": "Plymouth",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.1417, 50.3642]}"
     },
