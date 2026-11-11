@@ -227,7 +227,21 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 
 /* ---------- Footer ---------- */
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 48px 0 56px; font-size: 15px; color: var(--muted); }
-.foot-links { display: flex; flex-wrap: wrap; gap: 24px; }
+.foot { align-items: center; }
+.foot-icons { display: flex; flex-wrap: wrap; gap: 6px; }
+.icon-link {
+  position: relative; width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted); border-radius: 22px; transition: color .15s, background .15s;
+}
+.icon-link:hover, .icon-link:focus-visible { color: var(--amber); background: var(--bg); }
+.icon-link::after {
+  content: attr(data-label); position: absolute; bottom: calc(100% + 6px); right: 0;
+  white-space: nowrap; padding: 6px 10px; border-radius: 6px;
+  background: var(--pop-bg); color: var(--pop-fg); font-size: 12px;
+  opacity: 0; pointer-events: none; transform: translateY(4px); transition: opacity .15s, transform .15s;
+}
+.icon-link:hover::after, .icon-link:focus-visible::after { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
