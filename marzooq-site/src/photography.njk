@@ -12,17 +12,24 @@ permalink: /photography/
 <div class="tabs" role="tablist" aria-label="Photography sections">
   <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true">{% t "Personal work", "Gwaith personol" %}</button>
   <button type="button" role="tab" id="tab-commissions" aria-controls="panel-commissions" aria-selected="false">{% t "Commissions", "Comisiynau" %}</button>
+  <button type="button" role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false">{% t "Map", "Map" %}</button>
 </div>
 
 <div id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
   <div class="gallery">
     {%- for p in photos.personal %}
-    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
+    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
       <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" loading="lazy">
     </button>
     {%- endfor %}
   </div>
 </div>
+
+<div id="panel-map" role="tabpanel" aria-labelledby="tab-map" hidden>
+  <p class="map-note">{% t "Where the personal work was taken. Tap a pin to see the photos.", "Ble tynnwyd y gwaith personol. Tapiwch bin i weld y lluniau." %}</p>
+  <div id="photo-map" aria-label="Map of photo locations"></div>
+</div>
+<script id="map-data" type="application/json">{{ photos.personal | mapPoints | json | safe }}</script>
 
 <div id="panel-commissions" role="tabpanel" aria-labelledby="tab-commissions" hidden>
   <div class="book band">
@@ -41,5 +48,11 @@ permalink: /photography/
 <dialog id="lightbox" aria-label="Photo viewer">
   <button type="button" class="lb-close" aria-label="Close">×</button>
   <img alt="">
-  <p class="label"></p>
+  <div class="lb-meta">
+    <p class="label"></p>
+    <button type="button" class="lb-map" hidden>
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      {% t "View on map", "Gweld ar y map" %}
+    </button>
+  </div>
 </dialog>

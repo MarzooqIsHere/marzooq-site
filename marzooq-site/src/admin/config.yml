@@ -35,6 +35,7 @@ collections:
             fields:
               - { name: image, label: Photo, widget: image }
               - { name: caption, label: Caption (place), widget: string, required: false }
+              - { name: location, label: "Location (click the map to drop a pin)", widget: map, type: Point, required: false }
               - { name: featured, label: Show on homepage, widget: boolean, default: false }
           - name: commissions
             label: Commissions

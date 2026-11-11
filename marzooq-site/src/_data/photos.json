@@ -3,92 +3,110 @@
     {
       "image": "/images/personal/personal-03.jpg",
       "caption": "Ynys Llanddwyn",
-      "featured": true
+      "featured": true,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.4115, 53.1385]}"
     },
     {
       "image": "/images/personal/personal-14.jpg",
       "caption": "Jabal al-Nour",
-      "featured": true
+      "featured": true,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
     },
     {
       "image": "/images/personal/personal-11.jpg",
       "caption": "Jabal al-Nour",
-      "featured": true
+      "featured": true,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
     },
     {
       "image": "/images/personal/personal-01.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Llyn Ogwen, Eryri",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.013, 53.1236]}"
     },
     {
       "image": "/images/personal/personal-06.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Newborough Forest, Anglesey",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.393, 53.153]}"
     },
     {
       "image": "/images/personal/personal-16.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Bristol Museum & Art Gallery",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6052, 51.456]}"
     },
     {
       "image": "/images/personal/personal-15.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Bristol Harbourside",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.5985, 51.4493]}"
     },
     {
       "image": "/images/personal/personal-09.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Makkah",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8215, 21.419]}"
     },
     {
       "image": "/images/personal/personal-04.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "South Stack, Anglesey",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.695, 53.307]}"
     },
     {
       "image": "/images/personal/personal-07.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Plymouth Hoe",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.1417, 50.3642]}"
     },
     {
       "image": "/images/personal/personal-13.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Jabal al-Nour",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
     },
     {
       "image": "/images/personal/personal-18.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Penarth Pier",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1663, 51.4343]}"
     },
     {
       "image": "/images/personal/personal-02.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Llanddwyn Beach, Anglesey",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.386, 53.144]}"
     },
     {
       "image": "/images/personal/personal-05.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Mumbles, Swansea",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.98, 51.5675]}"
     },
     {
       "image": "/images/personal/personal-08.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Roath Park Lake, Cardiff",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1728, 51.505]}"
     },
     {
       "image": "/images/personal/personal-10.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Jabal al-Nour",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
     },
     {
       "image": "/images/personal/personal-12.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "Jabal al-Nour",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
     },
     {
       "image": "/images/personal/personal-17.jpg",
-      "caption": "",
-      "featured": false
+      "caption": "H. H. Wills Physics Laboratory, Bristol",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6027, 51.4584]}"
     }
   ],
   "commissions": [

@@ -30,18 +30,108 @@
 
   // Lightbox
   var lb = document.getElementById("lightbox");
+  var openPhoto = function () {};
   if (lb && lb.showModal) {
-    var img = lb.querySelector("img"), cap = lb.querySelector(".label");
+    var img = lb.querySelector("img"), cap = lb.querySelector(".label"), mapBtn = lb.querySelector(".lb-map");
+    var current = null;
+    openPhoto = function (src, caption, mappable) {
+      img.src = src; img.alt = caption || "";
+      cap.textContent = caption || "";
+      current = src;
+      if (mapBtn) mapBtn.hidden = !mappable;
+      if (!lb.open) lb.showModal();
+    };
     document.querySelectorAll(".shot").forEach(function (b) {
-      b.addEventListener("click", function () {
-        img.src = b.dataset.full; img.alt = b.dataset.caption || "";
-        cap.textContent = b.dataset.caption || "";
-        lb.showModal();
-      });
+      b.addEventListener("click", function () { openPhoto(b.dataset.full, b.dataset.caption, b.dataset.mappable === "true"); });
     });
     lb.querySelector(".lb-close").addEventListener("click", function () { lb.close(); });
     lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+    if (mapBtn) mapBtn.addEventListener("click", function () {
+      lb.close();
+      showMapAt(current);
+    });
   }
+
+  // Photo map (Leaflet loads only when the map is first opened)
+  var mapEl = document.getElementById("photo-map");
+  var mapData = [];
+  try { mapData = JSON.parse((document.getElementById("map-data") || {}).textContent || "[]"); } catch (e) {}
+  var map = null, markers = {}, pending = null;
+
+  function loadLeaflet(cb) {
+    if (window.L) return cb();
+    var css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    document.head.appendChild(css);
+    var s = document.createElement("script");
+    s.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    s.onload = cb; document.head.appendChild(s);
+  }
+
+  function buildMap() {
+    if (map || !mapEl || !window.L) return;
+    var dark = root.dataset.theme !== "light";
+    map = L.map(mapEl, { scrollWheelZoom: false, worldCopyJump: true });
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/" + (dark ? "dark_all" : "light_all") + "/{z}/{x}/{y}{r}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: "abcd", maxZoom: 19
+    }).addTo(map);
+
+    // Group photos taken at the same spot into one pin
+    var groups = {};
+    mapData.forEach(function (p) {
+      var k = p.lat.toFixed(4) + "," + p.lng.toFixed(4);
+      (groups[k] = groups[k] || { lat: p.lat, lng: p.lng, caption: p.caption, photos: [] }).photos.push(p);
+    });
+    var bounds = [];
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k];
+      var icon = L.divIcon({ className: "", html: '<div class="pin">' + (g.photos.length > 1 ? "<span>" + g.photos.length + "</span>" : "") + "</div>", iconSize: [16, 16], iconAnchor: [8, 8] });
+      var box = document.createElement("div");
+      var t = document.createElement("p"); t.className = "map-pop-title"; t.textContent = g.caption; box.appendChild(t);
+      var grid = document.createElement("div"); grid.className = "map-pop-grid";
+      g.photos.forEach(function (p) {
+        var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Open photo: " + p.caption);
+        var im = document.createElement("img"); im.src = p.image; im.alt = ""; im.loading = "lazy";
+        b.appendChild(im);
+        b.addEventListener("click", function () { openPhoto(p.image, p.caption, true); });
+        grid.appendChild(b);
+        markers[p.image] = null;
+      });
+      box.appendChild(grid);
+      var m = L.marker([g.lat, g.lng], { icon: icon, title: g.caption }).addTo(map).bindPopup(box, { maxWidth: 260 });
+      g.photos.forEach(function (p) { markers[p.image] = m; });
+      bounds.push([g.lat, g.lng]);
+    });
+    if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+  }
+
+  function openMapTab() {
+    var tab = document.getElementById("tab-map");
+    if (tab) tab.click();
+  }
+
+  function showMapAt(src) {
+    pending = src;
+    openMapTab();
+  }
+
+  var mapTab = document.getElementById("tab-map");
+  if (mapTab && mapEl) mapTab.addEventListener("click", function () {
+    loadLeaflet(function () {
+      buildMap();
+      setTimeout(function () {
+        map.invalidateSize();
+        if (pending && markers[pending]) {
+          var m = markers[pending];
+          map.setView(m.getLatLng(), 13);
+          m.openPopup();
+          mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        pending = null;
+      }, 60);
+    });
+  });
 
   // CV sections
   document.querySelectorAll(".cv-toggle").forEach(function (btn) {

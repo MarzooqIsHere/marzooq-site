@@ -23,6 +23,19 @@ export default function (eleventyConfig) {
       .filter(Boolean);
   });
 
+  // Photos with a map pin, as plain data for the map script.
+  eleventyConfig.addFilter("mapPoints", (photos) =>
+    (photos || []).flatMap((p) => {
+      if (!p.location) return [];
+      try {
+        const g = typeof p.location === "string" ? JSON.parse(p.location) : p.location;
+        const [lng, lat] = g.coordinates;
+        return [{ image: p.image, caption: p.caption || "", lat, lng }];
+      } catch (e) { return []; }
+    })
+  );
+  eleventyConfig.addFilter("json", (v) => JSON.stringify(v).replace(/</g, "\\u003c"));
+
   eleventyConfig.addFilter("currentEntries", (cv) =>
     cv.sections.flatMap((s) => s.entries.filter((e) => e.current))
   );
