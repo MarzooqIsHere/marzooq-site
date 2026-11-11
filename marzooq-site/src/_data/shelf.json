@@ -1,0 +1,16 @@
+{
+  "intro": "Books that have shaped how I think, and what I'm reading now. Pull one off the shelf.",
+  "books": [
+    { "title": "The Qur'an", "author": "", "group": "faith", "note": "No other word can bring peace to its reader like the word of God.", "lookup": false, "spine": "#22382C" },
+    { "title": "The Sealed Nectar", "author": "Safiur Rahman Mubarakpuri", "group": "faith", "note": "The seerah only multiplied my love for the Prophet (PBUH)." },
+    { "title": "Philosophy in the Islamic World", "author": "Peter Adamson", "group": "faith", "note": "An amazing intro to Islamic philosophy if you're ever interested!" },
+    { "title": "How the World Thinks", "author": "Julian Baggini", "group": "faith", "note": "This really broadened my horizons on how different peoples think and how close-minded we can be." },
+    { "title": "The Wretched of the Earth", "author": "Frantz Fanon", "group": "politics", "note": "Violence is not just a necessity but an inevitability.", "reading": true },
+    { "title": "Orientalism", "author": "Edward W. Said", "group": "politics", "note": "So many ideas built into us are derived from old, racist systems." },
+    { "title": "Rise and Kill First", "author": "Ronen Bergman", "group": "politics", "note": "Truly eye-opening; brings a lot of context to the ongoing genocide of the Palestinian people." },
+    { "title": "The Lord of the Rings", "author": "J. R. R. Tolkien", "group": "stories", "note": "I read this all in a week as a kid; I wish I had that kind of stamina now." },
+    { "title": "Hard to Be a God", "author": "Arkady and Boris Strugatsky", "group": "stories", "note": "An absolute page-turner. The blend of philosophy and sci-fi kept me glued to the book and yearning for more." },
+    { "title": "Six Easy Pieces", "author": "Richard P. Feynman", "group": "stories", "note": "Inspired my curiosity for learning and the wider world." },
+    { "title": "Welsh in 12 Weeks", "author": "Phylip and Julie Brake", "group": "stories", "note": "Just an amazing textbook for Welsh learners, whether you're starting from zero or refreshing after school." }
+  ]
+}

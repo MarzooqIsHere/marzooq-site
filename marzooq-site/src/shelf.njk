@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: Shelf
+description: "Books that have shaped how Marzooq Subhani thinks, and what he's reading now."
+permalink: /shelf/
+---
+<section class="page-head">
+  <h1>{% t "Shelf", "Silff" %}</h1>
+  {% if shelf.intro %}<p class="intro">{{ shelf.intro }}</p>{% endif %}
+</section>
+
+<div class="bookcase">
+{%- for g in shelfGroups %}
+{%- set books = [] %}
+{%- for b in shelf.books %}{% if b.group == g.id %}{% set books = (books.push(b), books) %}{% endif %}{% endfor %}
+{%- if books.length %}
+<section class="shelf" aria-labelledby="shelf-{{ g.id }}">
+  <h2 id="shelf-{{ g.id }}">{% t g.en, g.cy %}</h2>
+  <div class="plank">
+    <ul class="spines">
+      {%- for b in books %}
+      {%- set s = b | spineOf %}
+      <li>
+        <button type="button" class="spine" aria-expanded="false" aria-controls="pull-{{ g.id }}" data-book="{{ g.id }}-{{ loop.index0 }}"
+          style="--h: {{ s.h }}%; --w: {{ s.w }}px; --c: {{ s.c }}; --ink: {{ s.ink }}">
+          <span class="spine-title">{{ b.title }}</span>
+          {% if b.reading %}<span class="ribbon" aria-hidden="true"></span>{% endif %}
+          <span class="sr-only">{% if b.author %}, {{ b.author }}{% endif %}{% if b.reading %}. Reading now{% endif %}</span>
+        </button>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  <div class="pulled" id="pull-{{ g.id }}" hidden>
+    {%- for b in books %}
+    {%- set cover = b | coverOf %}
+    {%- set s = b | spineOf %}
+    <div class="pulled-book" data-book="{{ g.id }}-{{ loop.index0 }}" hidden>
+      <button type="button" class="flip" aria-pressed="false" aria-label="Turn {{ b.title }} over">
+        <span class="face front">
+          {%- if cover %}<img src="{{ cover }}" alt="" {{ cover | dims | safe }} loading="lazy">
+          {%- else %}<span class="cover-type" style="--c: {{ s.c }}"><span>{{ b.title }}</span>{% if b.title == "The Qur'an" %}<span class="ar" lang="ar" dir="rtl">القرآن الكريم</span>{% elif b.author %}<small>{{ b.author }}</small>{% endif %}</span>{% endif %}
+        </span>
+        <span class="face back" style="--c: {{ s.c }}; --ink: {{ s.ink }}"><span>{{ b.note }}</span></span>
+      </button>
+      <div class="pulled-text">
+        {% if b.reading %}<span class="label amber">{% t "Reading now", "Yn darllen nawr" %}</span>{% endif %}
+        <span class="b-title">{{ b.title }}</span>
+        {% if b.author %}<span class="b-author">{{ b.author }}</span>{% endif %}
+        {% if b.note %}<span class="turn">{% t "Tap the cover to turn it over", "Tapiwch y clawr i'w droi drosodd" %} ↻</span>{% endif %}
+        <button type="button" class="put-back">{% t "Put it back", "Rhoi'n ôl" %}</button>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+{%- endfor %}
+</div>

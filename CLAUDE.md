@@ -4,10 +4,11 @@ Context for any Claude session working on Marzooq Subhani's personal website. Re
 
 ## What the site is
 
-Personal site for Marzooq Subhani (final-year Maths and Philosophy, University of Bristol; from Cardiff). Three pages:
+Personal site for Marzooq Subhani (final-year Maths and Philosophy, University of Bristol; from Cardiff). Four pages:
 
 - **Home** (`/`): portrait (Brandon Hill, Bristol), bio with 3 hover notes, photo strip (3 featured photos), Now, featured writing from his Substack *Grounded*.
 - **Photography** (`/photography/`): tabs for Personal work, Commissions, and Map (MapLibre/MapTiler map of where personal photos were taken). Lightbox with "View on map".
+- **Shelf** (`/shelf/`): a bookcase. Three shelves (Philosophy and faith, Politics and power, Stories and wonder; groups in `_data/shelfGroups.json`), books in `_data/shelf.json` (editable in admin). Spines vary in size and take their colour from the cover (`spineOf` filter, jpeg-js); clicking pulls the book out below the shelf, clicking the cover flips it to show his note on the back. `reading: true` adds an amber ribbon. Covers fetched from Open Library before each build into `src/images/covers/auto/` (git-ignored); `lookup: false` / `cover` / `isbn` / `spine` override. The Qur'an is first, with a typographic green cover. He chose this playful layout over cards and over a plain list (Nov 2026).
 - **CV** (`/cv/`): "Right now" list (entries ticked `current`), then collapsible sections (Work, Research, Leadership and volunteering, Education, Speaking and writing, Skills and languages). Bullets show in full when a section opens (he likes that; no nested collapsing).
 
 Blog stays on Substack: https://groundedbymarzooq.substack.com (also blog.marzooq.co.uk via Squarespace forwarding).
@@ -63,7 +64,7 @@ Sveltia CMS, GitHub backend, he signs in with a **fine-grained GitHub token** (o
 - **Three tones:** cream text, beige links, amber for "now"/interactive cues (labels, dates, +, Read →, selected tab underline, pins, hovers).
 - **Type:** Cormorant Garamond (headings, titles) + Inter (body). He chose these. **No monospace/typewriter fonts** (he finds them AI-looking).
 - **Layout:** editorial, magazine-like. Sections separated by space and full-width tonal **bands**, not by hairlines.
-  - **No card UI** (filled rounded boxes), which he rejected as "clearly Claude".
+  - **No card UI** (filled rounded boxes), which he rejected as "clearly Claude". (The Shelf page is its own playful thing: real covers and spines, no hairline borders.)
   - **No hairline-list look** (he said it made everything melt together).
   - No pill buttons for CTAs; text links with → instead.
 - Photos must be **sRGB** (he exports Adobe RGB from Lightroom; converting matters, or colours go flat). Web size ~2000px long edge, JPEG q80.

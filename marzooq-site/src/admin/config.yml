@@ -56,6 +56,33 @@ collections:
               - { name: url, label: Substack link, widget: string }
               - { name: blurb, label: "Blurb (optional, replaces the Substack subtitle)", widget: string, required: false }
 
+      - name: shelf
+        label: Shelf
+        file: marzooq-site/src/_data/shelf.json
+        fields:
+          - { name: intro, label: Intro line, widget: string }
+          - name: books
+            label: Books
+            hint: "Drag to reorder within a group. Covers are found automatically from Open Library; upload your own photo to replace one, or add an ISBN if it picks the wrong edition."
+            widget: list
+            summary: "{{fields.title}} ({{fields.group}})"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: author, label: Author, widget: string, required: false }
+              - name: group
+                label: Group
+                widget: select
+                options:
+                  - { label: "Philosophy and faith", value: faith }
+                  - { label: "Politics and power", value: politics }
+                  - { label: "Stories and wonder", value: stories }
+              - { name: reading, label: "Reading it now (shows a 'Reading now' tag)", widget: boolean, default: false, required: false }
+              - { name: note, label: "Why it's here (one line, shown on the back cover)", widget: text, required: false }
+              - { name: spine, label: "Spine colour (optional, e.g. #22382C; otherwise taken from the cover)", widget: string, required: false }
+              - { name: cover, label: "Cover (optional, your own photo)", widget: image, required: false }
+              - { name: isbn, label: "ISBN (optional, to pick a specific edition's cover)", widget: string, required: false }
+              - { name: lookup, label: "Find cover automatically", widget: boolean, default: true, required: false }
+
       - name: cv
         label: CV
         file: marzooq-site/src/_data/cv.json
