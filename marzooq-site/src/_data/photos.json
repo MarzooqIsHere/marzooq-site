@@ -107,6 +107,36 @@
       "caption": "H. H. Wills Physics Laboratory, Bristol",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-2.6027, 51.4584]}"
+    },
+    {
+      "image": "/images/personal/personal-19.jpg",
+      "caption": "Agafay Desert, Marrakesh",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.205, 31.44]}"
+    },
+    {
+      "image": "/images/personal/personal-20.jpg",
+      "caption": "Jardin Majorelle, Marrakesh",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}"
+    },
+    {
+      "image": "/images/personal/personal-21.jpg",
+      "caption": "Jardin Majorelle, Marrakesh",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}"
+    },
+    {
+      "image": "/images/personal/personal-22.jpg",
+      "caption": "Ben Youssef Madrasa, Marrakesh",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-7.9862, 31.6318]}"
+    },
+    {
+      "image": "/images/personal/personal-23.jpg",
+      "caption": "Clifton Suspension Bridge, Bristol",
+      "featured": false,
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6278, 51.4549]}"
     }
   ],
   "commissions": [
