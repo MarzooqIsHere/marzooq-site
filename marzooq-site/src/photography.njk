@@ -11,15 +11,15 @@ permalink: /photography/
 
 <div class="tabs" role="tablist" aria-label="Photography sections">
   <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true">{% t "Personal work", "Gwaith personol" %}</button>
-  <button type="button" role="tab" id="tab-commissions" aria-controls="panel-commissions" aria-selected="false">{% t "Commissions", "Comisiynau" %}</button>
-  <button type="button" role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false">{% t "Map", "Map" %}</button>
+  <button type="button" role="tab" id="tab-commissions" aria-controls="panel-commissions" aria-selected="false" tabindex="-1">{% t "Commissions", "Comisiynau" %}</button>
+  <button type="button" role="tab" id="tab-map" aria-controls="panel-map" aria-selected="false" tabindex="-1">{% t "Map", "Map" %}</button>
 </div>
 
 <div id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
   <div class="gallery">
     {%- for p in photos.personal %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" loading="lazy">
+      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
     </button>
     {%- endfor %}
   </div>
@@ -39,7 +39,7 @@ permalink: /photography/
   <div class="gallery">
     {%- for p in photos.commissions %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img src="{{ p.image }}" alt="{{ p.caption or 'Commissioned photograph by Marzooq Subhani' }}" loading="lazy">
+      <img src="{{ p.image }}" alt="{{ p.caption or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
     </button>
     {%- endfor %}
   </div>
@@ -47,8 +47,11 @@ permalink: /photography/
 
 <dialog id="lightbox" aria-label="Photo viewer">
   <button type="button" class="lb-close" aria-label="Close">×</button>
+  <button type="button" class="lb-prev" aria-label="Previous photo">‹</button>
+  <button type="button" class="lb-next" aria-label="Next photo">›</button>
   <img alt="">
   <div class="lb-meta">
+    <span class="lb-count" aria-live="polite"></span>
     <p class="label"></p>
     <button type="button" class="lb-map" hidden>
       <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>

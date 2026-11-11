@@ -56,7 +56,8 @@ h2 { margin: 0; font-size: clamp(32px, 4vw, 40px); line-height: 1.1; }
 .amber-link { color: var(--amber); font-size: 16px; min-height: 44px; display: inline-flex; align-items: center; }
 
 .skip { position: absolute; left: -9999px; }
-.skip:focus { left: 16px; top: 16px; background: var(--bg); padding: 8px 12px; z-index: 50; }
+.skip:focus { left: 16px; top: 16px; background: var(--bg); padding: 0 14px; min-height: 44px; display: inline-flex; align-items: center; z-index: 50; }
+a, button { touch-action: manipulation; }
 
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
 @media (max-width: 600px) { .wrap { padding: 0 20px; } body { font-size: 16px; } }
@@ -95,6 +96,19 @@ h2 { margin: 0; font-size: clamp(32px, 4vw, 40px); line-height: 1.1; }
 @media (max-width: 760px) {
   .toggles { border-left: 0; padding-left: 0; }
 }
+/* Phones: name and toggles on one row, the links on a single scrollable row under them */
+@media (max-width: 600px) {
+  .nav { gap: 4px 12px; padding: 18px 0 6px; }
+  .brand { font-size: 23px; }
+  .toggles { order: 2; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .learner { width: 0; min-width: 100%; white-space: nowrap; text-align: right; font-size: 11px; line-height: 1; }
+  .nav nav {
+    order: 3; width: calc(100% + 40px); margin: 0 -20px; padding: 0 20px;
+    flex-wrap: nowrap; gap: 0 22px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav nav::-webkit-scrollbar { display: none; }
+  .nav nav a { white-space: nowrap; padding: 12px 0; }
+}
 
 /* ---------- Home ---------- */
 .hero { display: flex; flex-wrap: wrap; gap: 64px; padding: 80px 0; align-items: flex-start; }
@@ -109,7 +123,7 @@ h2 { margin: 0; font-size: clamp(32px, 4vw, 40px); line-height: 1.1; }
   text-decoration: underline dotted var(--amber); text-underline-offset: 5px; text-decoration-thickness: 2px;
 }
 .tip .pop {
-  position: absolute; left: 0; top: calc(100% + 12px); z-index: 10;
+  position: absolute; left: var(--shift, 0px); top: calc(100% + 12px); z-index: 10;
   width: min(280px, 80vw); padding: 14px 16px; border-radius: 6px;
   background: var(--pop-bg); color: var(--pop-fg);
   font: 14px/1.5 Inter, system-ui, sans-serif; font-style: normal; text-align: left;
@@ -121,7 +135,7 @@ h2 { margin: 0; font-size: clamp(32px, 4vw, 40px); line-height: 1.1; }
 
 .photos-strip { padding: 72px 0; display: flex; flex-direction: column; gap: 28px; }
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; }
-.section-head a { font-size: 15px; }
+.section-head a { font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
 .strip { display: flex; flex-wrap: wrap; gap: 24px; }
 .strip figure { margin: 0; flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
 .strip img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
@@ -164,6 +178,18 @@ dialog#lightbox {
   color: #EFE4D6;
 }
 dialog#lightbox::backdrop { background: rgba(10, 8, 6, .94); }
+dialog#lightbox { overscroll-behavior: contain; }
+html:has(dialog#lightbox[open]) { overflow: hidden; }
+.lb-prev, .lb-next {
+  position: fixed; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 48px; height: 72px; background: none; border: 0; padding: 0;
+  color: #EFE4D6; font: 300 40px/1 "Cormorant Garamond", Georgia, serif; cursor: pointer; opacity: .65;
+  transition: opacity .15s, color .15s;
+}
+.lb-prev { left: 8px; } .lb-next { right: 8px; }
+.lb-prev:hover, .lb-next:hover { opacity: 1; color: #D49568; }
+.lb-prev[hidden], .lb-next[hidden] { display: none; }
+.lb-count { font-size: 12px; letter-spacing: .14em; color: #D49568; font-variant-numeric: tabular-nums; }
 dialog#lightbox img { max-width: 96vw; max-height: 86vh; width: auto; margin: 0 auto; }
 dialog#lightbox .lb-meta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 20px; margin-top: 12px; }
 dialog#lightbox .label { margin: 0; color: #BCAE9E; }

@@ -2,47 +2,116 @@
   var root = document.documentElement;
   function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
+  var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Light / dark
   var themeBtn = document.getElementById("theme-toggle");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function syncTheme() {
+    var light = root.dataset.theme === "light";
+    if (themeMeta) themeMeta.content = light ? "#EEE5D8" : "#16110E";
+    if (themeBtn) themeBtn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+  }
   if (themeBtn) themeBtn.addEventListener("click", function () {
     var next = root.dataset.theme === "light" ? "dark" : "light";
-    root.dataset.theme = next; save("theme", next);
+    root.dataset.theme = next; save("theme", next); syncTheme();
   });
+  syncTheme();
 
   // English / Welsh
   var langBtn = document.getElementById("lang-toggle");
+  function syncLang() {
+    if (langBtn) langBtn.setAttribute("aria-label", root.dataset.lang === "cy"
+      ? "Switch to English (Newid i'r Saesneg)" : "Newid i'r Gymraeg (Switch to Welsh)");
+  }
   if (langBtn) langBtn.addEventListener("click", function () {
     var next = root.dataset.lang === "cy" ? "en" : "cy";
-    root.dataset.lang = next; root.lang = next; save("lang", next);
+    root.dataset.lang = next; root.lang = next; save("lang", next); syncLang();
   });
+  syncLang();
 
-  // Photography tabs
-  var tabs = document.querySelectorAll('[role="tab"]');
-  tabs.forEach(function (tab) {
+  // Hover notes: nudge the note left if it would run off the right edge of the screen
+  var tips = [];
+  document.querySelectorAll(".tip").forEach(function (tip) {
+    function place() {
+      var pop = tip.querySelector(".pop");
+      tip.style.setProperty("--shift", "0px");
+      var over = pop.getBoundingClientRect().right - (document.documentElement.clientWidth - 16);
+      if (over > 0) tip.style.setProperty("--shift", -over + "px");
+    }
+    tip.addEventListener("mouseenter", place);
+    tip.addEventListener("focus", place);
+    tips.push(place);
+  });
+  // Also place them up front (and on resize), so hidden notes never widen the page
+  function placeAll() { tips.forEach(function (f) { f(); }); }
+  placeAll();
+  window.addEventListener("resize", placeAll);
+  root.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("#lang-toggle")) setTimeout(placeAll, 0); });
+
+  // Photography tabs: arrow keys move between them, and the open tab is kept in the URL (#map etc.)
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function tabName(t) { return t.id.replace(/^tab-/, ""); }
+  tabs.forEach(function (tab, i) {
     tab.addEventListener("click", function () {
       tabs.forEach(function (t) {
         var on = t === tab;
         t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
         document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
       });
+      var hash = i === 0 ? location.pathname : "#" + tabName(tab);
+      if (history.replaceState) history.replaceState(null, "", hash);
+    });
+    tab.addEventListener("keydown", function (e) {
+      var j = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (j === undefined) return;
+      e.preventDefault();
+      var next = tabs[(j + tabs.length) % tabs.length];
+      next.focus(); next.click();
     });
   });
 
-  // Lightbox
+  // Lightbox: previous/next through the gallery the photo came from
   var lb = document.getElementById("lightbox");
   var openPhoto = function () {};
   if (lb && lb.showModal) {
     var img = lb.querySelector("img"), cap = lb.querySelector(".label"), mapBtn = lb.querySelector(".lb-map");
-    var current = null;
-    openPhoto = function (src, caption, mappable) {
-      img.src = src; img.alt = caption || "";
-      cap.textContent = caption || "";
-      current = src;
-      if (mapBtn) mapBtn.hidden = !mappable;
+    var count = lb.querySelector(".lb-count"), prevBtn = lb.querySelector(".lb-prev"), nextBtn = lb.querySelector(".lb-next");
+    var current = null, list = [], idx = 0;
+    function show(i) {
+      idx = (i + list.length) % list.length;
+      var b = list[idx];
+      current = b.dataset.full;
+      img.src = current; img.alt = b.dataset.caption || "";
+      cap.textContent = b.dataset.caption || "";
+      if (mapBtn) mapBtn.hidden = b.dataset.mappable !== "true";
+      var many = list.length > 1;
+      count.textContent = many ? (idx + 1) + " / " + list.length : "";
+      prevBtn.hidden = nextBtn.hidden = !many;
+    }
+    openPhoto = function (src) {
+      var from = document.querySelector('.shot[data-full="' + src + '"]');
+      if (!from) return;
+      list = Array.prototype.slice.call(from.closest(".gallery").querySelectorAll(".shot"));
+      show(list.indexOf(from));
       if (!lb.open) lb.showModal();
     };
     document.querySelectorAll(".shot").forEach(function (b) {
-      b.addEventListener("click", function () { openPhoto(b.dataset.full, b.dataset.caption, b.dataset.mappable === "true"); });
+      b.addEventListener("click", function () { openPhoto(b.dataset.full); });
+    });
+    prevBtn.addEventListener("click", function () { show(idx - 1); });
+    nextBtn.addEventListener("click", function () { show(idx + 1); });
+    lb.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); show(idx - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); show(idx + 1); }
+    });
+    var startX = null;
+    lb.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX; startX = null;
+      if (Math.abs(dx) > 50 && list.length > 1) show(dx < 0 ? idx + 1 : idx - 1);
     });
     lb.querySelector(".lb-close").addEventListener("click", function () { lb.close(); });
     lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
@@ -210,12 +279,16 @@
           var m = markers[pending];
           map.jumpTo({ center: m.getLngLat(), zoom: 14 });
           if (!m.getPopup().isOpen()) m.togglePopup();
-          mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          mapEl.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
         }
         pending = null;
       }, 60);
     });
   });
+
+  // Open the tab named in the URL, e.g. /photography/#map
+  var fromHash = document.getElementById("tab-" + location.hash.slice(1));
+  if (fromHash && fromHash.getAttribute("role") === "tab") fromHash.click();
 
   // CV sections
   document.querySelectorAll(".cv-toggle").forEach(function (btn) {

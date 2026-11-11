@@ -8,7 +8,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
 
 <section class="hero">
   <figure class="portrait">
-    <img src="/images/portrait-brandon-hill.jpg" alt="Portrait of Marzooq Subhani at Brandon Hill, Bristol" width="1200" height="1800">
+    <img src="/images/portrait-brandon-hill.jpg" alt="Portrait of Marzooq Subhani at Brandon Hill, Bristol" width="1200" height="1800" fetchpriority="high">
     <figcaption class="label">{% t "Brandon Hill, Bristol", "Brandon Hill, Bryste" %}</figcaption>
   </figure>
   <div class="hero-text">
@@ -37,7 +37,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
   <div class="strip">
     {%- for p in photos.personal | selectattr("featured") %}{% if loop.index <= 3 %}
     <figure>
-      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" loading="lazy">
+      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
       {% if p.caption %}<figcaption class="label">{{ p.caption }}</figcaption>{% endif %}
     </figure>
     {% endif %}{%- endfor %}
@@ -60,7 +60,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
     <div class="posts">
       {%- for post in writing | featuredPosts(substack) %}
       <a class="post" href="{{ post.url }}" target="_blank" rel="noopener">
-        {% if post.cover %}<img src="{{ post.cover }}" alt="" loading="lazy">{% else %}<span class="cover-blank" aria-hidden="true"></span>{% endif %}
+        {% if post.cover %}<img src="{{ post.cover }}" alt="" width="300" height="200" loading="lazy">{% else %}<span class="cover-blank" aria-hidden="true"></span>{% endif %}
         <span class="post-text">
           <span class="post-title">{{ post.title }}</span>
           <span class="post-sub">{{ post.subtitle }}</span>

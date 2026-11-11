@@ -30,10 +30,10 @@ Blog stays on Substack: https://groundedbymarzooq.substack.com (also blog.marzoo
 ## Repo layout (inside `marzooq-site/`)
 
 ```
-eleventy.config.js        filters: t (EN/CY), featuredPosts, currentEntries, mapPoints, json
+eleventy.config.js        filters: t (EN/CY), featuredPosts, currentEntries, mapPoints, json, dims (reads JPEG/PNG size for width/height)
 src/_includes/base.njk    layout: head/meta/SEO/JSON-LD Person, nav, theme + language toggles, icon footer
 src/index.njk             home (bio + tooltips in EN and CY)
-src/photography.njk       tabs, gallery, map panel, lightbox
+src/photography.njk       tabs (arrow keys, #personal/#commissions/#map in URL), gallery, map panel, lightbox (prev/next, keys, swipe, "n / total")
 src/cv.njk                CV page
 src/404.njk, robots.njk, sitemap.njk, CNAME
 src/_data/now.json        { updated, items[] }
@@ -69,6 +69,8 @@ Sveltia CMS, GitHub backend, he signs in with a **fine-grained GitHub token** (o
 - Photos must be **sRGB** (he exports Adobe RGB from Lightroom; converting matters, or colours go flat). Web size ~2000px long edge, JPEG q80.
 - Footer: "© Marzooq Subhani" + line icons (email, personal IG @marzooqishere, photography IG @mrzq.jpg, LinkedIn, Grounded, CV if PDF) with hover labels. Use generic line icons, not brand logos.
 - External links (Substack, Instagram, LinkedIn) open in a new tab.
+- Phones (≤600px): name + toggles on one row, nav links on one sideways-scrolling row below.
+- Every <img> gets width/height (`| dims` for local files). Tap targets outside running text are ≥44px.
 
 ## Content rules
 
