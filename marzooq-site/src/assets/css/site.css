@@ -176,6 +176,9 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 /* Photo map */
 .map-note { margin: 28px 0 16px; color: var(--muted); font-size: 15px; }
 #photo-map { height: min(70vh, 640px); margin-bottom: 72px; background: var(--band); }
+[data-theme="dark"] #photo-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) sepia(.3); }
+[data-theme="light"] #photo-map .leaflet-tile-pane { filter: sepia(.35) saturate(.8); }
+@media (max-width: 600px) { .tabs { gap: 24px; } .tabs button { font-size: 22px; } }
 .leaflet-container { font-family: Inter, system-ui, sans-serif; }
 #photo-map .leaflet-popup-content-wrapper, #photo-map .leaflet-popup-tip { background: var(--pop-bg); color: var(--pop-fg); border-radius: 6px; }
 #photo-map .leaflet-popup-content { margin: 14px; }

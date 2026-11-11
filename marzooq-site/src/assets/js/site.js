@@ -70,11 +70,11 @@
 
   function buildMap() {
     if (map || !mapEl || !window.L) return;
-    var dark = root.dataset.theme !== "light";
     map = L.map(mapEl, { scrollWheelZoom: false, worldCopyJump: true });
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/" + (dark ? "dark_all" : "light_all") + "/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: "abcd", maxZoom: 19
+    // OpenStreetMap tiles need no key; the dark/warm look is a CSS filter (see site.css)
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19
     }).addTo(map);
 
     // Group photos taken at the same spot into one pin
