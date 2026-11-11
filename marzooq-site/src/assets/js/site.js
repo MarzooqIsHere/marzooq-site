@@ -52,41 +52,125 @@
     });
   }
 
-  // Photo map (Leaflet loads only when the map is first opened)
+  // Photo map: MapLibre + MapTiler vector tiles, loaded only when the map is first opened.
+  // The key is public by design; MapTiler only accepts it from marzooq.co.uk.
+  var MAPTILER_KEY = "QB7XBzuwBZU9kgcvFowu";
+  var MAPLIBRE = "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl";
   var mapEl = document.getElementById("photo-map");
   var mapData = [];
   try { mapData = JSON.parse((document.getElementById("map-data") || {}).textContent || "[]"); } catch (e) {}
   var map = null, markers = {}, pending = null;
 
-  function loadLeaflet(cb) {
-    if (window.L) return cb();
+  function loadMapLibre(cb) {
+    if (window.maplibregl) return cb();
     var css = document.createElement("link");
-    css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    css.rel = "stylesheet"; css.href = MAPLIBRE + ".css";
     document.head.appendChild(css);
     var s = document.createElement("script");
-    s.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    s.src = MAPLIBRE + ".js";
     s.onload = cb; document.head.appendChild(s);
   }
 
+  // Darkroom map style, built on MapTiler's OpenMapTiles vector data
+  var PALETTES = {
+    dark:  { bg: "#211A15", water: "#0E0D0C", wood: "#251D17", park: "#251E17", urban: "#271F19", building: "#30261F",
+             minor: "#352B24", major: "#46382D", motorway: "#5A4434", rail: "#3A2F27", border: "#5A4A3E",
+             label: "#BCAE9E", city: "#EFE4D6", waterLabel: "#6F6A63", halo: "#16110E" },
+    light: { bg: "#EEE5D8", water: "#CDD1CB", wood: "#E3DAC8", park: "#E2DCC6", urban: "#E8DECF", building: "#DDD1C0",
+             minor: "#F8F2E9", major: "#F3E4CC", motorway: "#E8C9A4", rail: "#CFC1AE", border: "#A8968A",
+             label: "#5E4B47", city: "#2B1A1C", waterLabel: "#7C8580", halo: "#EEE5D8" }
+  };
+  function mapStyle(theme) {
+    var c = PALETTES[theme] || PALETTES.dark;
+    var k = "?key=" + MAPTILER_KEY;
+    var font = ["Noto Sans Regular"], fontB = ["Noto Sans Bold"], fontI = ["Noto Sans Italic"];
+    var road = function (id, classes, color, w) {
+      return { id: id, type: "line", source: "omt", "source-layer": "transportation",
+        filter: ["in", ["get", "class"], ["literal", classes]],
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: { "line-color": color, "line-width": ["interpolate", ["exponential", 1.5], ["zoom"], 6, w[0], 12, w[1], 18, w[2]] } };
+    };
+    return {
+      version: 8,
+      glyphs: "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf" + k,
+      sources: { omt: { type: "vector", url: "https://api.maptiler.com/tiles/v3/tiles.json" + k } },
+      layers: [
+        { id: "bg", type: "background", paint: { "background-color": c.bg } },
+        { id: "urban", type: "fill", source: "omt", "source-layer": "landuse",
+          filter: ["in", ["get", "class"], ["literal", ["residential", "suburb", "neighbourhood", "commercial", "retail", "industrial"]]],
+          paint: { "fill-color": c.urban } },
+        { id: "wood", type: "fill", source: "omt", "source-layer": "landcover",
+          filter: ["in", ["get", "class"], ["literal", ["wood", "forest"]]], paint: { "fill-color": c.wood } },
+        { id: "park", type: "fill", source: "omt", "source-layer": "park", paint: { "fill-color": c.park } },
+        { id: "water", type: "fill", source: "omt", "source-layer": "water", paint: { "fill-color": c.water } },
+        { id: "waterway", type: "line", source: "omt", "source-layer": "waterway",
+          paint: { "line-color": c.water, "line-width": ["interpolate", ["linear"], ["zoom"], 8, 0.5, 16, 3] } },
+        { id: "building", type: "fill", source: "omt", "source-layer": "building", minzoom: 14, paint: { "fill-color": c.building } },
+        { id: "border", type: "line", source: "omt", "source-layer": "boundary",
+          filter: ["all", ["==", ["get", "admin_level"], 2], ["!=", ["get", "maritime"], 1]],  // country borders only
+          paint: { "line-color": c.border, "line-dasharray": [3, 2], "line-width": 0.8 } },
+        road("road-minor", ["minor", "service", "track"], c.minor, [0, 0.6, 8]),
+        road("road-mid", ["tertiary", "secondary"], c.major, [0.2, 1, 12]),
+        road("road-major", ["primary", "trunk"], c.major, [0.4, 1.6, 16]),
+        road("road-motorway", ["motorway"], c.motorway, [0.6, 2, 18]),
+        { id: "rail", type: "line", source: "omt", "source-layer": "transportation", minzoom: 10,
+          filter: ["==", ["get", "class"], "rail"], paint: { "line-color": c.rail, "line-width": 1, "line-dasharray": [2, 2] } },
+        { id: "water-name", type: "symbol", source: "omt", "source-layer": "water_name",
+          layout: { "text-field": ["get", "name:latin"], "text-font": fontI, "text-size": 12, "text-letter-spacing": 0.1 },
+          paint: { "text-color": c.waterLabel, "text-halo-color": c.halo, "text-halo-width": 1 } },
+        { id: "road-name", type: "symbol", source: "omt", "source-layer": "transportation_name", minzoom: 14,
+          layout: { "symbol-placement": "line", "text-field": ["get", "name:latin"], "text-font": font, "text-size": 11 },
+          paint: { "text-color": c.label, "text-halo-color": c.halo, "text-halo-width": 1.2 } },
+        { id: "place-small", type: "symbol", source: "omt", "source-layer": "place",
+          filter: ["in", ["get", "class"], ["literal", ["village", "hamlet", "suburb", "neighbourhood"]]],
+          layout: { "text-field": ["get", "name:latin"], "text-font": font, "text-size": 12 },
+          paint: { "text-color": c.label, "text-halo-color": c.halo, "text-halo-width": 1.4 } },
+        { id: "place-big", type: "symbol", source: "omt", "source-layer": "place",
+          filter: ["in", ["get", "class"], ["literal", ["city", "town"]]],
+          layout: { "text-field": ["get", "name:latin"], "text-font": fontB,
+            "text-size": ["interpolate", ["linear"], ["zoom"], 6, 12, 12, 17], "text-letter-spacing": 0.04 },
+          paint: { "text-color": c.city, "text-halo-color": c.halo, "text-halo-width": 1.6 } }
+      ]
+    };
+  }
+  function theme() { return document.documentElement.dataset.theme === "light" ? "light" : "dark"; }
+
   function buildMap() {
-    if (map || !mapEl || !window.L) return;
-    map = L.map(mapEl, { scrollWheelZoom: false, worldCopyJump: true });
-    // OpenStreetMap tiles need no key; the dark/warm look is a CSS filter (see site.css)
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 19
-    }).addTo(map);
+    if (map || !mapEl || !window.maplibregl) return;
+    map = new maplibregl.Map({
+      container: mapEl, style: mapStyle(theme()), center: [-3.2, 51.6], zoom: 7,
+      scrollZoom: false, dragRotate: false, pitchWithRotate: false, attributionControl: false
+    });
+    map.touchZoomRotate.disableRotation();
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    // Credits come from MapTiler's tile data; the free plan also needs their logo shown
+    map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
+    map.addControl({
+      onAdd: function () {
+        var a = document.createElement("a");
+        a.className = "maplibregl-ctrl maptiler-logo"; a.href = "https://www.maptiler.com"; a.target = "_blank"; a.rel = "noopener";
+        a.innerHTML = '<img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler" width="67" height="20">';
+        return a;
+      },
+      onRemove: function () {}
+    }, "bottom-left");
+
+    // Swap colours when the site theme changes
+    new MutationObserver(function () { map.setStyle(mapStyle(theme())); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     // Group photos taken at the same spot into one pin
     var groups = {};
     mapData.forEach(function (p) {
-      var k = p.lat.toFixed(4) + "," + p.lng.toFixed(4);
+      var k = p.lat.toFixed(5) + "," + p.lng.toFixed(5);
       (groups[k] = groups[k] || { lat: p.lat, lng: p.lng, caption: p.caption, photos: [] }).photos.push(p);
     });
-    var bounds = [];
+    var bounds = new maplibregl.LngLatBounds();
     Object.keys(groups).forEach(function (k) {
       var g = groups[k];
-      var icon = L.divIcon({ className: "", html: '<div class="pin">' + (g.photos.length > 1 ? "<span>" + g.photos.length + "</span>" : "") + "</div>", iconSize: [16, 16], iconAnchor: [8, 8] });
+      var el = document.createElement("button");
+      el.type = "button"; el.className = "pin"; el.setAttribute("aria-label", "Photos: " + g.caption);
+      if (g.photos.length > 1) { var n = document.createElement("span"); n.textContent = g.photos.length; el.appendChild(n); }
       var box = document.createElement("div");
       var t = document.createElement("p"); t.className = "map-pop-title"; t.textContent = g.caption; box.appendChild(t);
       var grid = document.createElement("div"); grid.className = "map-pop-grid";
@@ -96,14 +180,14 @@
         b.appendChild(im);
         b.addEventListener("click", function () { openPhoto(p.image, p.caption, true); });
         grid.appendChild(b);
-        markers[p.image] = null;
       });
       box.appendChild(grid);
-      var m = L.marker([g.lat, g.lng], { icon: icon, title: g.caption }).addTo(map).bindPopup(box, { maxWidth: 260 });
+      var popup = new maplibregl.Popup({ offset: 14, maxWidth: "260px", className: "map-pop" }).setDOMContent(box);
+      var m = new maplibregl.Marker({ element: el }).setLngLat([g.lng, g.lat]).setPopup(popup).addTo(map);
       g.photos.forEach(function (p) { markers[p.image] = m; });
-      bounds.push([g.lat, g.lng]);
+      bounds.extend([g.lng, g.lat]);
     });
-    if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+    if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 50, maxZoom: 13, duration: 0 });
   }
 
   function openMapTab() {
@@ -118,14 +202,14 @@
 
   var mapTab = document.getElementById("tab-map");
   if (mapTab && mapEl) mapTab.addEventListener("click", function () {
-    loadLeaflet(function () {
+    loadMapLibre(function () {
       buildMap();
       setTimeout(function () {
-        map.invalidateSize();
+        map.resize();
         if (pending && markers[pending]) {
           var m = markers[pending];
-          map.setView(m.getLatLng(), 13);
-          m.openPopup();
+          map.jumpTo({ center: m.getLngLat(), zoom: 14 });
+          if (!m.getPopup().isOpen()) m.togglePopup();
           mapEl.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         pending = null;

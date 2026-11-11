@@ -176,20 +176,24 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 /* Photo map */
 .map-note { margin: 28px 0 16px; color: var(--muted); font-size: 15px; }
 #photo-map { height: min(70vh, 640px); margin-bottom: 72px; background: var(--band); }
-[data-theme="dark"] #photo-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) sepia(.3); }
-[data-theme="light"] #photo-map .leaflet-tile-pane { filter: sepia(.35) saturate(.8); }
 @media (max-width: 600px) { .tabs { gap: 24px; } .tabs button { font-size: 22px; } }
-.leaflet-container { font-family: Inter, system-ui, sans-serif; }
-#photo-map .leaflet-popup-content-wrapper, #photo-map .leaflet-popup-tip { background: var(--pop-bg); color: var(--pop-fg); border-radius: 6px; }
-#photo-map .leaflet-popup-content { margin: 14px; }
-#photo-map .leaflet-popup-close-button { color: var(--pop-fg); }
-#photo-map .leaflet-bar a { background: var(--pop-bg); color: var(--pop-fg); border-color: var(--line); }
-#photo-map .leaflet-bar a:hover { background: var(--band); }
+#photo-map { position: relative; }
+#photo-map .maplibregl-popup-content { background: var(--pop-bg); color: var(--pop-fg); border-radius: 6px; padding: 14px; font-family: Inter, system-ui, sans-serif; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+#photo-map .maplibregl-popup-tip { border-top-color: var(--pop-bg); border-bottom-color: var(--pop-bg); }
+#photo-map .maplibregl-popup-close-button { color: var(--pop-fg); font-size: 18px; padding: 2px 8px; }
+#photo-map .maplibregl-ctrl-group { background: var(--pop-bg); border-radius: 4px; box-shadow: none; border: 1px solid var(--line); }
+#photo-map .maplibregl-ctrl-group button + button { border-top-color: var(--line); }
+[data-theme="dark"] #photo-map .maplibregl-ctrl-icon { filter: invert(1) sepia(.4); }
+#photo-map .maplibregl-ctrl-attrib { background: transparent; color: var(--muted); font-size: 11px; }
+#photo-map .maplibregl-ctrl-attrib a { color: var(--muted); }
+[data-theme="dark"] #photo-map .maplibregl-ctrl-attrib-button { filter: invert(1) sepia(.4); }
+.maptiler-logo { line-height: 0; opacity: .75; }
 .map-pop-title { font: 500 20px/1.2 "Cormorant Garamond", Georgia, serif; margin: 0 0 10px; }
 .map-pop-grid { display: grid; grid-template-columns: repeat(3, 72px); gap: 6px; }
 .map-pop-grid button { padding: 0; border: 0; background: none; cursor: zoom-in; }
 .map-pop-grid img { width: 72px; height: 72px; object-fit: cover; }
 .pin {
+  position: relative; padding: 0; cursor: pointer;
   width: 16px; height: 16px; border-radius: 50%;
   background: var(--amber); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--amber);
 }

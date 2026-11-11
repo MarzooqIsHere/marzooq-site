@@ -7,7 +7,7 @@ Context for any Claude session working on Marzooq Subhani's personal website. Re
 Personal site for Marzooq Subhani (final-year Maths and Philosophy, University of Bristol; from Cardiff). Three pages:
 
 - **Home** (`/`): portrait (Brandon Hill, Bristol), bio with 3 hover notes, photo strip (3 featured photos), Now, featured writing from his Substack *Grounded*.
-- **Photography** (`/photography/`): tabs for Personal work, Commissions, and Map (Leaflet map of where personal photos were taken). Lightbox with "View on map".
+- **Photography** (`/photography/`): tabs for Personal work, Commissions, and Map (MapLibre/MapTiler map of where personal photos were taken). Lightbox with "View on map".
 - **CV** (`/cv/`): "Right now" list (entries ticked `current`), then collapsible sections (Work, Research, Leadership and volunteering, Education, Speaking and writing, Skills and languages). Bullets show in full when a section opens (he likes that; no nested collapsing).
 
 Blog stays on Substack: https://groundedbymarzooq.substack.com (also blog.marzooq.co.uk via Squarespace forwarding).
@@ -43,7 +43,7 @@ src/_data/cv.json         { pdf, sections[] {id, title, title_cy, entries[] {tit
 src/_data/substack.js     fetches the Substack RSS at build; falls back to substack_cache.json
 src/_data/build.js        build id, used as ?v= cache-buster on site.css / site.js
 src/assets/css/site.css   all styles (CSS variables for both themes)
-src/assets/js/site.js     theme/lang toggles, tabs, lightbox, CV sections, lazy Leaflet map
+src/assets/js/site.js     theme/lang toggles, tabs, lightbox, CV sections, lazy MapLibre map + map style
 src/admin/                Sveltia CMS (index.html + config.yml)
 src/images/personal/      personal-NN.jpg (1–23 so far)
 src/images/commissions/   commission-NN.jpg
@@ -81,7 +81,16 @@ Sveltia CMS, GitHub backend, he signs in with a **fine-grained GitHub token** (o
 
 ## Map
 
-Leaflet 1.9.4 from unpkg, loaded lazily on first open. Tiles: **OpenStreetMap** (`tile.openstreetmap.org`, no key) with a CSS filter for the warm dark look. CARTO basemaps now need an API key, so don't use them. Pins grouped by identical coordinates with a count badge. Locations are place-level, stored as GeoJSON strings `{"type":"Point","coordinates":[lng,lat]}`.
+MapLibre GL 5.24.1 from unpkg, loaded lazily on first open, with **MapTiler** vector tiles (`tiles/v3`, OpenMapTiles schema). The style is written in `site.js` (`PALETTES` + `mapStyle()`), dark and light variants in the Darkroom palette, and swaps when the theme toggle changes. Fonts: MapTiler's Noto Sans glyphs.
+- MapTiler key is in `site.js` (public by design, restricted to marzooq.co.uk origins in his MapTiler account). Free plan: non-commercial, MapTiler logo must show (bottom-left control), stops at 5k sessions/month.
+- **Country borders only** (admin_level 2). He found province/state lines messy; don't add them back.
+- Opens fitted to **all pins** (he chose this over a UK default).
+- **Exact locations are wanted** (so people can see how a shot was laid out). Camera has no GPS; pins are set by hand in the admin location widget. Stored as GeoJSON strings `{"type":"Point","coordinates":[lng,lat]}`. Pins grouped by identical coordinates with a count badge.
+- Testing: the sandbox can't reach MapTiler, and the key only works from marzooq.co.uk. Preview by opening the live page in the built-in browser and injecting the new map code with the JS tool; the pane's page is often `hidden`, so call `map.redraw()` in a loop before screenshotting.
+
+## Photo details (EXIF): planned
+
+Lightbox "Details +" link (closed by default) showing camera · focal length · aperture · shutter · ISO, plus a small locator map. The current 23 images have no EXIF (stripped at export). He'll re-export from Lightroom with Metadata "All Except Camera Raw Info" later; then the build reads EXIF. Any sRGB conversion must keep EXIF.
 
 ## SEO
 
@@ -92,15 +101,17 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 1. Attach the repo with `add_repo` (owner `MarzooqIsHere`, repo `marzooq-site`, access `push`), then clone. The Claude GitHub App is installed on this repo, so pushes work.
 2. Pull first: he edits content via the admin page, so `src/_data/*.json` may have changed. Edit data files in place; never overwrite them from an old copy.
 3. Build-check: `cd marzooq-site && npm ci && npx eleventy`, then remove `_site` and `node_modules` before committing.
-4. For UI changes, screenshot with Playwright against a local server (`python3 -m http.server` in `_site`). The sandbox can't reach unpkg/OSM/Google Fonts, so stub Leaflet from `npm i leaflet@1.9.4` via `page.route` when testing the map.
+4. For UI changes, screenshot with Playwright against a local server (`python3 -m http.server` in `_site`). The sandbox can't reach unpkg/MapTiler/Google Fonts; see the Map section for how to preview the map.
 5. Commit to `main` and push. Check the run: `gh api repos/MarzooqIsHere/marzooq-site/actions/runs --jq '.workflow_runs[0]'`. Live about 1–2 minutes after the push.
 6. Small changes go straight in. For a design overhaul, mock it up first (he likes seeing options on a Claude Design canvas before anything goes live).
 
 ## Open items (as of 11 Nov 2026)
+
+- Photo EXIF: re-export, then build the Details panel.
 
 - Tick **Enforce HTTPS** in GitHub Pages settings once the cert is issued.
 - Public CV PDF (no phone, academic framing), then upload via admin.
 - Telephone Fundraiser CV entry has no bullet points yet.
 - Welsh translations need checking by a fluent speaker.
 - Extended essay line in Now uses the working question from his academic CV; swap in a final title when he has one.
-- Photo locations that were Claude's guesses and that he hasn't explicitly confirmed: Llyn Ogwen, Llanddwyn Beach, South Stack, Bristol Harbourside.
+- Photo locations that were Claude's guesses and that he hasn't explicitly confirmed: Llyn Ogwen, Llanddwyn Beach, South Stack, Bristol Harbourside. He may drag these to the exact spot.
