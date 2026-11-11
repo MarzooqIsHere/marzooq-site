@@ -1,0 +1,106 @@
+# marzooq.co.uk: site handbook
+
+Context for any Claude session working on Marzooq Subhani's personal website. Read this before changing anything.
+
+## What the site is
+
+Personal site for Marzooq Subhani (final-year Maths and Philosophy, University of Bristol; from Cardiff). Three pages:
+
+- **Home** (`/`): portrait (Brandon Hill, Bristol), bio with 3 hover notes, photo strip (3 featured photos), Now, featured writing from his Substack *Grounded*.
+- **Photography** (`/photography/`): tabs for Personal work, Commissions, and Map (Leaflet map of where personal photos were taken). Lightbox with "View on map".
+- **CV** (`/cv/`): "Right now" list (entries ticked `current`), then collapsible sections (Work, Research, Leadership and volunteering, Education, Speaking and writing, Skills and languages). Bullets show in full when a section opens (he likes that; no nested collapsing).
+
+Blog stays on Substack: https://groundedbymarzooq.substack.com (also blog.marzooq.co.uk via Squarespace forwarding).
+
+## Stack and hosting
+
+- **Eleventy 3** static site, Nunjucks templates, content in JSON data files.
+- **Repo:** `MarzooqIsHere/marzooq-site` (public), branch `main`.
+  - **Quirk:** the site lives in a **`marzooq-site/` subfolder** of the repo. `.github/workflows/deploy.yml` sits at the repo root and runs with `working-directory: marzooq-site`. Don't move it without updating the workflow, the admin config paths and this file.
+- **Hosting:** GitHub Pages via GitHub Actions (`Build and deploy` workflow). Triggers: push to `main`, daily cron (06:17 UTC, picks up new Substack posts), manual run. Builds swap in atomically; a failed build leaves the old site live.
+- **Domain:** `marzooq.co.uk`, registered at **Squarespace** (DNS stays there).
+  - A records `@` → 185.199.108.153 / .109.153 / .110.153 / .111.153
+  - CNAME `www` → `marzooqishere.github.io` (www redirects to the apex)
+  - TXT `@` → Google Search Console verification
+  - TXT `mx._domainkey` + Mailgun MX records = **catch-all email forwarding (anything@marzooq.co.uk → his Gmail)**. Never touch MX/email records.
+  - Squarespace forwarding rule `blog` → Substack (keep). The old apex → Substack forward was removed.
+- HTTPS: GitHub Pages cert; "Enforce HTTPS" to be ticked once available (check this if not done).
+- Cost: £0 hosting; only the domain renewal.
+
+## Repo layout (inside `marzooq-site/`)
+
+```
+eleventy.config.js        filters: t (EN/CY), featuredPosts, currentEntries, mapPoints, json
+src/_includes/base.njk    layout: head/meta/SEO/JSON-LD Person, nav, theme + language toggles, icon footer
+src/index.njk             home (bio + tooltips in EN and CY)
+src/photography.njk       tabs, gallery, map panel, lightbox
+src/cv.njk                CV page
+src/404.njk, robots.njk, sitemap.njk, CNAME
+src/_data/now.json        { updated, items[] }
+src/_data/photos.json     personal[] {image, caption, location (GeoJSON string), featured}, commissions[] {image, caption}
+src/_data/writing.json    featured[] {url, blurb}  (empty list = latest 3 posts)
+src/_data/cv.json         { pdf, sections[] {id, title, title_cy, entries[] {title, org, dates, sub, current, bullets[]}} }
+src/_data/substack.js     fetches the Substack RSS at build; falls back to substack_cache.json
+src/_data/build.js        build id, used as ?v= cache-buster on site.css / site.js
+src/assets/css/site.css   all styles (CSS variables for both themes)
+src/assets/js/site.js     theme/lang toggles, tabs, lightbox, CV sections, lazy Leaflet map
+src/admin/                Sveltia CMS (index.html + config.yml)
+src/images/personal/      personal-NN.jpg (1–23 so far)
+src/images/commissions/   commission-NN.jpg
+src/images/uploads/       where admin uploads land
+src/files/                CV PDF goes here (currently none: link hidden while cv.pdf is "")
+```
+
+## Admin page (marzooq.co.uk/admin)
+
+Sveltia CMS, GitHub backend, he signs in with a **fine-grained GitHub token** (only this repo, Contents read/write) stored in his browser. Nothing secret is in the repo. Paths in `config.yml` are prefixed `marzooq-site/` because of the subfolder. Editable: Now, Photography (incl. map-pin `location` widget and "Show on homepage"), Featured writing, CV (incl. `current` tick box, PDF upload). Each save commits to `main` and triggers a rebuild.
+
+## Design system (agreed; don't drift)
+
+- **Direction "Darkroom":** near-black warm background, film/darkroom feel, his photography's warm hazy edit style. Dark is the default; light mode exists.
+- **Colours (dark):** bg `#16110E`, band `#1F1814`, text `#EFE4D6`, muted `#BCAE9E`, links beige `#D9C4A0`, accent amber `#D49568` (deliberately muted a few degrees), lines `#2E2621`.
+  **Light:** bg `#EEE5D8`, band `#E4D8C6`, text `#2B1A1C`, muted `#5E4B47`, link `#6E4A2C`, amber `#8C421E`.
+- **Three tones:** cream text, beige links, amber for "now"/interactive cues (labels, dates, +, Read →, selected tab underline, pins, hovers).
+- **Type:** Cormorant Garamond (headings, titles) + Inter (body). He chose these. **No monospace/typewriter fonts** (he finds them AI-looking).
+- **Layout:** editorial, magazine-like. Sections separated by space and full-width tonal **bands**, not by hairlines.
+  - **No card UI** (filled rounded boxes), which he rejected as "clearly Claude".
+  - **No hairline-list look** (he said it made everything melt together).
+  - No pill buttons for CTAs; text links with → instead.
+- Photos must be **sRGB** (he exports Adobe RGB from Lightroom; converting matters, or colours go flat). Web size ~2000px long edge, JPEG q80.
+- Footer: "© Marzooq Subhani" + line icons (email, personal IG @marzooqishere, photography IG @mrzq.jpg, LinkedIn, Grounded, CV if PDF) with hover labels. Use generic line icons, not brand logos.
+- External links (Substack, Instagram, LinkedIn) open in a new tab.
+
+## Content rules
+
+- Copy written on his behalf: **no em dashes**. Use commas, colons, brackets, full stops.
+- Bio says "from Cardiff" (he asked not to name the area).
+- Welsh (EN/CY toggle): **fixed text only** (nav, headings, bio, tooltips, buttons, section titles), via `{% t "English", "Cymraeg" %}`. Dynamic content (Now, captions, CV entries, blurbs) stays English. He's a learner ("Dysgwr ydw i" shown by the toggle); translations are drafts to be checked by a fluent speaker. Don't expand Welsh to everything (he decided it oversells his Welsh).
+- Commissions copy: "Get in touch for a quote", with "Email me to book →" as a mailto link with a subject. No public rates.
+- No phone number anywhere public. The Drive CV PDF has his phone and a retail-job statement, so it was not published; he needs a public PDF version.
+- Commission photos are not pinned on the map (client privacy).
+
+## Map
+
+Leaflet 1.9.4 from unpkg, loaded lazily on first open. Tiles: **OpenStreetMap** (`tile.openstreetmap.org`, no key) with a CSS filter for the warm dark look. CARTO basemaps now need an API key, so don't use them. Pins grouped by identical coordinates with a count badge. Locations are place-level, stored as GeoJSON strings `{"type":"Point","coordinates":[lng,lat]}`.
+
+## SEO
+
+Sitemap, robots.txt (disallows /admin), per-page `description` front matter, canonical + Open Graph + Twitter tags, JSON-LD Person on the home page (`sameAs`: Substack, both Instagrams, LinkedIn). Google Search Console verified via a DNS TXT record; sitemap submitted (check). Remaining growth is off-site: link marzooq.co.uk from his bios and profiles.
+
+## How to make changes (Claude sessions)
+
+1. Attach the repo with `add_repo` (owner `MarzooqIsHere`, repo `marzooq-site`, access `push`), then clone. The Claude GitHub App is installed on this repo, so pushes work.
+2. Pull first: he edits content via the admin page, so `src/_data/*.json` may have changed. Edit data files in place; never overwrite them from an old copy.
+3. Build-check: `cd marzooq-site && npm ci && npx eleventy`, then remove `_site` and `node_modules` before committing.
+4. For UI changes, screenshot with Playwright against a local server (`python3 -m http.server` in `_site`). The sandbox can't reach unpkg/OSM/Google Fonts, so stub Leaflet from `npm i leaflet@1.9.4` via `page.route` when testing the map.
+5. Commit to `main` and push. Check the run: `gh api repos/MarzooqIsHere/marzooq-site/actions/runs --jq '.workflow_runs[0]'`. Live about 1–2 minutes after the push.
+6. Small changes go straight in. For a design overhaul, mock it up first (he likes seeing options on a Claude Design canvas before anything goes live).
+
+## Open items (as of 11 Nov 2026)
+
+- Tick **Enforce HTTPS** in GitHub Pages settings once the cert is issued.
+- Public CV PDF (no phone, academic framing), then upload via admin.
+- Telephone Fundraiser CV entry has no bullet points yet.
+- Welsh translations need checking by a fluent speaker.
+- Extended essay line in Now uses the working question from his academic CV; swap in a final title when he has one.
+- Photo locations that were Claude's guesses and that he hasn't explicitly confirmed: Llyn Ogwen, Llanddwyn Beach, South Stack, Bristol Harbourside.
