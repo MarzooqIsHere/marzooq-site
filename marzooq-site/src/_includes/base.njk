@@ -4,10 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if title %}{{ title }} · {% endif %}Marzooq Subhani</title>
-<meta name="description" content="Marzooq Subhani: philosophy, writing and photography, from Cardiff.">
-<meta property="og:title" content="Marzooq Subhani">
-<meta property="og:description" content="Philosophy, writing and photographs.">
+{%- set desc = description or "Marzooq Subhani: Mathematics and Philosophy student at the University of Bristol, writer of Grounded, and photographer from Cardiff." %}
+<meta name="description" content="{{ desc }}">
+<link rel="canonical" href="https://marzooq.co.uk{{ page.url }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Marzooq Subhani">
+<meta property="og:title" content="{% if title %}{{ title }} · {% endif %}Marzooq Subhani">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="https://marzooq.co.uk{{ page.url }}">
 <meta property="og:image" content="https://marzooq.co.uk/images/personal/personal-03.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+{%- if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marzooq Subhani",
+  "url": "https://marzooq.co.uk/",
+  "image": "https://marzooq.co.uk/images/portrait-brandon-hill.jpg",
+  "description": "Mathematics and Philosophy student at the University of Bristol, writer and photographer from Cardiff.",
+  "email": "mailto:me@marzooq.co.uk",
+  "homeLocation": { "@type": "Place", "name": "Cardiff, Wales" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Bristol" },
+  "knowsAbout": ["Philosophy", "Ethics", "Social and political philosophy", "Philosophy of religion", "Islamic philosophy", "Photography"],
+  "sameAs": [
+    "https://groundedbymarzooq.substack.com",
+    "https://www.instagram.com/mrzq.jpg",
+    "https://www.linkedin.com/in/marzooq"
+  ]
+}
+</script>
+{%- endif %}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <script>
   // Set theme and language before the page paints, so it doesn't flash.
@@ -52,7 +80,7 @@
   <footer class="foot band">
     <a href="mailto:me@marzooq.co.uk">me@marzooq.co.uk</a>
     <span class="foot-links">
-      <a href="https://instagram.com/mrzq.jpg">Instagram @mrzq.jpg</a>
+      <a href="https://www.instagram.com/mrzq.jpg">Instagram @mrzq.jpg</a>
       <a href="https://groundedbymarzooq.substack.com">Grounded</a>
       {% if cv.pdf %}<a href="{{ cv.pdf }}">CV (PDF)</a>{% endif %}
     </span>
