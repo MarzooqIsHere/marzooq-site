@@ -1,0 +1,14 @@
+name: Cover sheets (temporary)
+on:
+  push:
+    branches: [covers-tmp]
+jobs:
+  sheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pillow && python tools/cover_sheets.py
+      - uses: actions/upload-artifact@v4
+        with: { name: sheets, path: out/ }
