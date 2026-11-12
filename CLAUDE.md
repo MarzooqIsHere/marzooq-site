@@ -99,6 +99,12 @@ Lightbox "Details +" link (closed by default) showing camera · focal length · 
 
 Sitemap, robots.txt (disallows /admin), per-page `description` front matter, canonical + Open Graph + Twitter tags, JSON-LD Person on the home page (`sameAs`: Substack, both Instagrams, LinkedIn). Google Search Console verified via a DNS TXT record; sitemap submitted (check). Remaining growth is off-site: link marzooq.co.uk from his bios and profiles.
 
+## Analytics, footer, print
+
+- **GoatCounter** (privacy-friendly, no cookies) via the script at the end of `base.njk`, site code `marzooq` (https://marzooq.goatcounter.com). Dashboard is private to him. Not on /admin.
+- Footer colophon: "Built in Bristol and Cardiff · updated <date>", date = last git commit (`_data/updated.js`), EN/CY.
+- `@media print` in site.css: white page, nav/footer hidden, all CV sections expanded, `.print-only` name + contact line on /cv/.
+
 ## How to make changes (Claude sessions)
 
 1. Attach the repo with `add_repo` (owner `MarzooqIsHere`, repo `marzooq-site`, access `push`), then clone. The Claude GitHub App is installed on this repo, so pushes work.
