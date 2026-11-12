@@ -2,6 +2,9 @@ name: Cover sheets (temporary)
 on:
   push:
     branches: [covers-tmp]
+    paths: [tools/**, .github/workflows/cover-sheets.yml]
+permissions:
+  contents: write
 jobs:
   sheets:
     runs-on: ubuntu-latest
@@ -10,5 +13,6 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install pillow && python tools/cover_sheets.py
-      - uses: actions/upload-artifact@v4
-        with: { name: sheets, path: out/ }
+      - run: |
+          git config user.name "cover-sheets" && git config user.email "actions@github.com"
+          git add out && git commit -m "Cover sheets" && git push
