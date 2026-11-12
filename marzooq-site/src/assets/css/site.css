@@ -362,3 +362,41 @@ dialog#book[open] .pulled-book:not([hidden]) { animation: pick-up .45s cubic-bez
   .hero { gap: 40px; padding: 48px 0; }
   .hero-text { order: -1; }
 }
+
+/* ---------- Footer colophon ---------- */
+.foot-text { display: flex; flex-direction: column; gap: 4px; }
+.colophon { font-size: 13px; }
+
+/* ---------- Print (mainly the CV) ---------- */
+.print-only { display: none; }
+@media print {
+  :root, [data-theme] {
+    --bg: #fff; --band: #fff; --fg: #1a1a1a; --muted: #555; --link: #1a1a1a; --amber: #7a3a1a; --line: #ccc;
+    color-scheme: light;
+  }
+  @page { margin: 16mm 16mm; }
+  body { background: #fff; color: #1a1a1a; font-size: 11pt; }
+  .wrap { padding: 0; max-width: none; }
+  .skip, .nav, .foot, .sign, .page-head a, .learner { display: none !important; }
+  .print-only { display: inline; }
+  .print-contact { display: block; margin: 4pt 0 0; font-size: 10pt; color: #555; }
+  .band { background: none !important; box-shadow: none !important; clip-path: none !important; }
+  .page-head { padding: 0 0 8pt; display: block; }
+  .page-head h1 { font-size: 26pt; margin: 0; }
+  .current { padding: 6pt 0 !important; gap: 4pt; }
+  .current-row { padding: 3pt 0; }
+  .c-title { font-size: 14pt; }
+  .c-org, .c-dates { font-size: 9.5pt; }
+  .cv-sections { padding: 0; gap: 0; }
+  .cv-toggle { min-height: 0; padding: 12pt 0 2pt; break-after: avoid; }
+  .cv-title { font-size: 17pt; }
+  .cv-body, .cv-body[hidden] { display: block !important; margin-left: 0; padding: 0 0 4pt; }
+  .entry { padding: 5pt 0; gap: 2pt 18pt; break-inside: avoid; }
+  .e-dates { flex-basis: 110pt; font-size: 9pt; padding-top: 2pt; }
+  .e-main { flex-basis: 300pt; gap: 2pt; }
+  .e-title { font-size: 13pt; }
+  .e-org { font-size: 10pt; }
+  .e-sub { font-size: 9pt; }
+  .e-main ul { font-size: 10pt; gap: 1pt; margin-top: 2pt; max-width: none; }
+  a { color: inherit; text-decoration: none; }
+}

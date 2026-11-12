@@ -82,7 +82,10 @@
   </main>
 
   <footer class="foot band">
-    <span>© Marzooq Subhani</span>
+    <div class="foot-text">
+      <span>© Marzooq Subhani</span>
+      <span class="colophon">{% t "Built in Bristol and Cardiff", "Adeiladwyd ym Mryste a Chaerdydd" %} · {% t "updated", "diweddarwyd" %} <time datetime="{{ updated.iso }}">{% t updated.en, updated.cy %}</time></span>
+    </div>
     <nav class="foot-icons" aria-label="Elsewhere">
       <a class="icon-link" href="mailto:me@marzooq.co.uk" aria-label="Email" data-label="Email"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></a>
       <a class="icon-link" href="https://www.instagram.com/marzooqishere" target="_blank" rel="noopener" aria-label="Instagram (personal)" data-label="Instagram (personal)"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></a>
@@ -94,5 +97,6 @@
   </footer>
 </div>
 <script src="/assets/js/site.js?v={{ build }}"></script>
+<script data-goatcounter="https://marzooq.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
