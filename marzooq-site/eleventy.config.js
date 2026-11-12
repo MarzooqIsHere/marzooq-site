@@ -42,7 +42,9 @@ async function fetchCovers() {
     if (fs.existsSync(file)) return;
     try {
       let id = null;
-      if (b.isbn) {
+      if (b.olcover) {
+        id = "id/" + String(b.olcover).replace(/[^0-9]/g, "");
+      } else if (b.isbn) {
         id = "isbn/" + String(b.isbn).replace(/[^0-9X]/gi, "");
       } else {
         const q = new URLSearchParams({ title: b.title, limit: "5", fields: "cover_i" });

@@ -80,6 +80,7 @@ collections:
               - { name: note, label: "Why it's here (one line, shown on the back cover)", widget: text, required: false }
               - { name: spine, label: "Spine colour (optional, e.g. #22382C; otherwise taken from the cover)", widget: string, required: false }
               - { name: cover, label: "Cover (optional, your own photo)", widget: image, required: false }
+              - { name: olcover, label: "Open Library cover ID (optional, picks an exact cover)", widget: string, required: false }
               - { name: isbn, label: "ISBN (optional, to pick a specific edition's cover)", widget: string, required: false }
               - { name: lookup, label: "Find cover automatically", widget: boolean, default: true, required: false }
 
