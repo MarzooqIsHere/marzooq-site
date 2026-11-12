@@ -290,46 +290,34 @@
   var fromHash = document.getElementById("tab-" + location.hash.slice(1));
   if (fromHash && fromHash.getAttribute("role") === "tab") fromHash.click();
 
-  // Shelf: click a spine to pull the book out; click the cover to turn it over
-  document.querySelectorAll(".shelf").forEach(function (shelf) {
-    var panel = shelf.querySelector(".pulled");
-    var spines = shelf.querySelectorAll(".spine");
-    function close() {
-      spines.forEach(function (s) { s.setAttribute("aria-expanded", "false"); });
-      panel.hidden = true;
-    }
-    spines.forEach(function (sp) {
+  // Shelf: click a spine to pick the book up (a pop-up); click the cover to turn it over
+  var bookDlg = document.getElementById("book");
+  if (bookDlg && bookDlg.showModal) {
+    var lastSpine = null;
+    document.querySelectorAll(".spine").forEach(function (sp) {
       sp.addEventListener("click", function () {
-        var open = sp.getAttribute("aria-expanded") === "true";
-        close();
-        if (open) return;
-        sp.setAttribute("aria-expanded", "true");
-        panel.querySelectorAll(".pulled-book").forEach(function (b) {
+        lastSpine = sp;
+        sp.classList.add("out");
+        bookDlg.querySelectorAll(".pulled-book").forEach(function (b) {
           var on = b.dataset.book === sp.dataset.book;
           b.hidden = !on;
           if (on) b.querySelector(".flip").setAttribute("aria-pressed", "false");
         });
-        panel.hidden = false;
+        bookDlg.showModal();
       });
     });
-    panel.querySelectorAll(".flip").forEach(function (f) {
+    bookDlg.querySelectorAll(".flip").forEach(function (f) {
       f.addEventListener("click", function () {
         f.setAttribute("aria-pressed", f.getAttribute("aria-pressed") === "true" ? "false" : "true");
       });
     });
-    panel.querySelectorAll(".put-back").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var sp = shelf.querySelector('.spine[aria-expanded="true"]');
-        close(); if (sp) sp.focus();
-      });
+    function putBack() { bookDlg.close(); }
+    bookDlg.querySelectorAll(".put-back, .book-close").forEach(function (b) { b.addEventListener("click", putBack); });
+    bookDlg.addEventListener("click", function (e) { if (e.target === bookDlg) putBack(); });
+    bookDlg.addEventListener("close", function () {
+      if (lastSpine) { lastSpine.classList.remove("out"); lastSpine.focus(); }
     });
-    shelf.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !panel.hidden) {
-        var sp = shelf.querySelector('.spine[aria-expanded="true"]');
-        close(); if (sp) sp.focus();
-      }
-    });
-  });
+  }
 
   // CV sections
   document.querySelectorAll(".cv-toggle").forEach(function (btn) {

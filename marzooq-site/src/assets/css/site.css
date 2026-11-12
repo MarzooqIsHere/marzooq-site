@@ -232,6 +232,12 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 /* ---------- Shelf ---------- */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .bookcase { display: flex; flex-direction: column; gap: 56px; padding: 24px 0 96px; }
+@media (min-width: 900px) {
+  /* Desktop: the shelves stand side by side like one bookcase, each as wide as its books */
+  .bookcase { flex-direction: row; flex-wrap: wrap; align-items: flex-end; gap: 48px 56px; }
+  .shelf { flex: 0 1 auto; }
+  .spines { min-width: 240px; }
+}
 .shelf h2 { font-size: clamp(26px, 3vw, 32px); margin-bottom: 18px; }
 .plank { position: relative; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; padding-top: 24px; }
 .plank::-webkit-scrollbar { display: none; }
@@ -251,14 +257,23 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
   display: flex; align-items: center; justify-content: center;
 }
 .spine:hover, .spine:focus-visible { transform: translateY(-10px); }
-.spine[aria-expanded="true"] { transform: translateY(-22px); }
+.spine.out { transform: translateY(-22px); opacity: .35; }
 .spine-title {
   writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-height: 100%; font: 500 14px/1 "Cormorant Garamond", Georgia, serif; letter-spacing: .02em;
 }
 .ribbon { position: absolute; top: -12px; right: 6px; width: 8px; height: 26px; background: #D49568; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
-.pulled { padding: 36px 0 8px; }
 .pulled-book[hidden] { display: none; }
+dialog#book {
+  width: min(680px, 92vw); padding: 44px 40px 36px; border: 0; border-radius: 4px;
+  background: var(--bg); color: var(--fg); overscroll-behavior: contain;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .7);
+}
+dialog#book::backdrop { background: rgba(10, 8, 6, .82); }
+html:has(dialog#book[open]) { overflow: hidden; }
+dialog#book[open] .pulled-book:not([hidden]) { animation: pick-up .45s cubic-bezier(.2,.8,.25,1); }
+@keyframes pick-up { from { opacity: 0; transform: translateY(40px) rotate(-3deg) scale(.94); } }
+.book-close { position: absolute; top: 6px; right: 6px; color: var(--fg); }
 .pulled-book { display: flex; flex-wrap: wrap; gap: 28px 40px; align-items: flex-start; }
 .flip {
   position: relative; flex: 0 0 auto; width: 200px; aspect-ratio: 2 / 3; padding: 0; border: 0; background: none; cursor: pointer;
@@ -291,9 +306,10 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 @media (max-width: 600px) {
   .spines { height: 250px; }
   .flip { width: 160px; }
+  dialog#book { padding: 40px 22px 24px; }
   .b-title { font-size: 26px; }
 }
-@media (prefers-reduced-motion: reduce) { .face, .spine { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .face, .spine { transition: none; } dialog#book[open] .pulled-book { animation: none; } }
 
 /* ---------- CV ---------- */
 .current { padding: 48px 0; display: flex; flex-direction: column; gap: 20px; }
