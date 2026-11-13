@@ -69,5 +69,12 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
       </a>
       {%- endfor %}
     </div>
+    <form class="subscribe" action="https://groundedbymarzooq.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <label for="sub-email">{% t "New essays from <em>Grounded</em>, straight to your inbox.", "Ysgrifau newydd o <em>Grounded</em>, yn syth i'ch mewnflwch." %}</label>
+      <div class="sub-row">
+        <input type="email" id="sub-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        <button type="submit" class="amber-link">{% t "Subscribe →", "Tanysgrifio →" %}</button>
+      </div>
+    </form>
   </div>
 </section>
