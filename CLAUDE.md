@@ -93,7 +93,7 @@ MapLibre GL 5.24.1 from unpkg, loaded lazily on first open, with **MapTiler** ve
 
 ## Photo details (EXIF)
 
-Lightbox "Details +" button (closed by default; stays open while flicking through) shows `exif` from `photos.json`: camera · lens at focal · aperture · shutter · ISO (`exifLine` filter, `data-exif` on each `.shot`). Editable in admin under each photo ("Camera settings"). Filled 13 Nov 2026 for 26 of 35 photos by matching the site JPEGs to his originals in `D:\LightroomStorage\Lightroom CC\...\originals` (perceptual hashes; borderline matches checked by eye) and reading EXIF + Canon makernote lens from the CR2/JPG. Lenses: EF-S 10-18mm f/4.5-5.6 IS STM, EF-S 18-55mm f/3.5-5.6 (IS and non-IS reported), EF 70-210mm f/3.5-4.5 USM. The 6 cloud-only personal ones (08, 19-23) were read from the Lightroom Info panel via computer use. Still missing: commission-02, 08, 12. No locator map (the Map tab already covers it).
+Lightbox "Details +" button (closed by default; stays open while flicking through) shows `exif` from `photos.json`: camera · lens at focal · aperture · shutter · ISO (`exifLine` filter, `data-exif` on each `.shot`). Editable in admin under each photo ("Camera settings"). Filled 13 Nov 2026 for 26 of 35 photos by matching the site JPEGs to his originals in `D:\LightroomStorage\Lightroom CC\...\originals` (perceptual hashes; borderline matches checked by eye) and reading EXIF + Canon makernote lens from the CR2/JPG. Lenses: EF-S 10-18mm f/4.5-5.6 IS STM, EF-S 18-55mm f/3.5-5.6 (IS and non-IS reported), EF 70-210mm f/3.5-4.5 USM. The 6 cloud-only personal ones (08, 19-23) were read from the Lightroom Info panel via computer use. The last 3 commissions likewise; all 35 now have details. No locator map (the Map tab already covers it).
 
 ## SEO
 
@@ -136,7 +136,6 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 
 ## Open items (as of 11 Nov 2026)
 
-- Camera details missing for commission-02, 08, 12 (graduate shot is in the July 2026 "graduation" search in Lightroom).
 
 - Public CV PDF (no phone, academic framing), then upload via admin.
 - Telephone Fundraiser CV entry has no bullet points yet.

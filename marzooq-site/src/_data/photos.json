@@ -363,7 +363,15 @@
     {
       "image": "/images/commissions/commission-02.jpg",
       "caption": "",
-      "alt": "Waiting staff carrying plates of chocolate dessert at a formal dinner"
+      "alt": "Waiting staff carrying plates of chocolate dessert at a formal dinner",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "135mm",
+        "aperture": "f/7.1",
+        "shutter": "1/160s",
+        "iso": "ISO 3200"
+      }
     },
     {
       "image": "/images/commissions/commission-03.jpg",
@@ -433,7 +441,15 @@
     {
       "image": "/images/commissions/commission-08.jpg",
       "caption": "",
-      "alt": "Two people embracing on a dance floor in a wood-panelled hall"
+      "alt": "Two people embracing on a dance floor in a wood-panelled hall",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "55mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-09.jpg",
@@ -477,7 +493,15 @@
     {
       "image": "/images/commissions/commission-12.jpg",
       "caption": "",
-      "alt": "A graduate in cap and gown standing on a narrow street by a stone staircase"
+      "alt": "A graduate in cap and gown standing on a narrow street by a stone staircase",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "33mm",
+        "aperture": "f/4.5",
+        "shutter": "1/125s",
+        "iso": "ISO 400"
+      }
     }
   ]
 }
