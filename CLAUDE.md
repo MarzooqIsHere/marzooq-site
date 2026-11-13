@@ -25,7 +25,7 @@ Blog stays on Substack: https://groundedbymarzooq.substack.com (also blog.marzoo
   - TXT `@` → Google Search Console verification
   - TXT `mx._domainkey` + Mailgun MX records = **catch-all email forwarding (anything@marzooq.co.uk → his Gmail)**. Never touch MX/email records.
   - Squarespace forwarding rule `blog` → Substack (keep). The old apex → Substack forward was removed.
-- HTTPS: GitHub Pages cert; "Enforce HTTPS" to be ticked once available (check this if not done).
+- HTTPS: GitHub Pages cert, Enforce HTTPS on (confirmed 13 Nov 2026).
 - Cost: £0 hosting; only the domain renewal.
 
 ## Repo layout (inside `marzooq-site/`)
@@ -124,7 +124,6 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 - **Favicons**: SVG + `favicon-32.png` + `apple-touch-icon.png` (180px). 404 has `noindex`.
 - **Spotify**: `_data/links.json` `spotify` (admin: "Links"); when set, a music-note icon appears in the footer.
 - Checked: no secrets in the repo (MapTiler key is public by design); WCAG contrast of all palette pairs ≥ 5:1; no horizontal overflow at 390px; no broken internal links; Lighthouse (local, no gzip) home 98 perf / 100 a11y / 100 SEO.
-- Enforce HTTPS can't be set from here (GitHub API blocked through the proxy); he has to tick it.
 
 ## How to make changes (Claude sessions)
 
@@ -139,7 +138,6 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 
 - Photo EXIF: re-export, then build the Details panel.
 
-- Tick **Enforce HTTPS** in GitHub Pages settings once the cert is issued.
 - Public CV PDF (no phone, academic framing), then upload via admin.
 - Telephone Fundraiser CV entry has no bullet points yet.
 - Welsh translations need checking by a fluent speaker.
