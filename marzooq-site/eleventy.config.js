@@ -166,13 +166,13 @@ export default function (eleventyConfig) {
     return s ? `width="${s.w}" height="${s.h}"` : "";
   });
 
-  for (const p of ["src/images", "src/files", "src/assets", "src/admin", "src/CNAME"]) {
+  for (const p of ["src/images", "src/files", "src/assets", "src/admin", "src/CNAME", "src/favicon.ico"]) {
     eleventyConfig.addPassthroughCopy(p);
   }
 
   // Both languages are written into the page; CSS shows the one that's selected.
   eleventyConfig.addShortcode("t", (en, cy) =>
-    `<span class="l-en" lang="en">${en}</span><span class="l-cy" lang="cy">${cy || en}</span>`
+    `<span class="l-en" lang="en">${en}</span><span class="l-cy" lang="cy" data-nosnippet>${cy || en}</span>`
   );
 
   // Featured essays: match the URLs picked in the admin page to posts from the Substack feed.
