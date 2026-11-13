@@ -36,6 +36,18 @@ collections:
               - { name: image, label: Photo, widget: image }
               - { name: caption, label: Caption (place), widget: string, required: false }
               - { name: alt, label: "Description (for screen readers and Google)", widget: string, required: false }
+              - name: exif
+                label: "Camera settings (shown under Details in the lightbox)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: camera, label: Camera, widget: string, required: false }
+                  - { name: lens, label: "Lens (e.g. 18-55mm)", widget: string, required: false }
+                  - { name: focal, label: "Focal length (e.g. 55mm)", widget: string, required: false }
+                  - { name: aperture, label: "Aperture (e.g. f/6.3)", widget: string, required: false }
+                  - { name: shutter, label: "Shutter (e.g. 1/200s)", widget: string, required: false }
+                  - { name: iso, label: "ISO (e.g. ISO 200)", widget: string, required: false }
               - { name: location, label: "Location (click the map to drop a pin)", widget: map, type: Point, required: false }
               - { name: featured, label: Show on homepage, widget: boolean, default: false }
           - name: commissions
@@ -45,6 +57,18 @@ collections:
               - { name: image, label: Photo, widget: image }
               - { name: caption, label: Caption, widget: string, required: false }
               - { name: alt, label: "Description (for screen readers and Google)", widget: string, required: false }
+              - name: exif
+                label: "Camera settings (shown under Details in the lightbox)"
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: camera, label: Camera, widget: string, required: false }
+                  - { name: lens, label: "Lens (e.g. 18-55mm)", widget: string, required: false }
+                  - { name: focal, label: "Focal length (e.g. 55mm)", widget: string, required: false }
+                  - { name: aperture, label: "Aperture (e.g. f/6.3)", widget: string, required: false }
+                  - { name: shutter, label: "Shutter (e.g. 1/200s)", widget: string, required: false }
+                  - { name: iso, label: "ISO (e.g. ISO 200)", widget: string, required: false }
 
       - name: writing
         label: Featured writing

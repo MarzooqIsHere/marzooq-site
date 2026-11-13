@@ -79,6 +79,14 @@
     var img = lb.querySelector("img"), cap = lb.querySelector(".label"), mapBtn = lb.querySelector(".lb-map");
     var count = lb.querySelector(".lb-count"), prevBtn = lb.querySelector(".lb-prev"), nextBtn = lb.querySelector(".lb-next");
     var current = null, list = [], idx = 0;
+    // Camera settings line: closed by default, stays open while flicking through once opened
+    var detBtn = lb.querySelector(".lb-details"), exif = lb.querySelector(".lb-exif"), detailsOpen = false;
+    detBtn.addEventListener("click", function () {
+      detailsOpen = !detailsOpen;
+      detBtn.setAttribute("aria-expanded", String(detailsOpen));
+      detBtn.querySelector(".sign-mini").textContent = detailsOpen ? "−" : "+";
+      exif.hidden = !detailsOpen || !exif.textContent;
+    });
     function show(i) {
       idx = (i + list.length) % list.length;
       var b = list[idx];
@@ -89,6 +97,10 @@
       var many = list.length > 1;
       count.textContent = many ? (idx + 1) + " / " + list.length : "";
       prevBtn.hidden = nextBtn.hidden = !many;
+      var ex = b.dataset.exif || "";
+      exif.textContent = ex;
+      detBtn.hidden = !ex;
+      exif.hidden = !ex || !detailsOpen;
     }
     openPhoto = function (src) {
       var from = document.querySelector('.shot[data-full="' + src + '"]');

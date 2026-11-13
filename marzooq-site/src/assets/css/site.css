@@ -198,6 +198,12 @@ dialog#lightbox .label { margin: 0; color: #BCAE9E; }
   background: none; border: 0; color: #D49568; font: 14px Inter, system-ui, sans-serif; cursor: pointer;
 }
 .lb-map:hover { color: #EFE4D6; }
+.lb-details {
+  min-height: 44px; padding: 0 4px; background: none; border: 0; color: #D49568;
+  font: 14px Inter, system-ui, sans-serif; cursor: pointer;
+}
+.lb-details:hover { color: #EFE4D6; }
+dialog#lightbox .lb-exif { flex-basis: 100%; margin: 0; padding: 0 12px; text-wrap: balance; text-align: center; color: #BCAE9E; font-size: 13px; letter-spacing: .02em; }
 
 /* Photo map */
 .map-note { margin: 28px 0 16px; color: var(--muted); font-size: 15px; }

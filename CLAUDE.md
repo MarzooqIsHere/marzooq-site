@@ -91,9 +91,9 @@ MapLibre GL 5.24.1 from unpkg, loaded lazily on first open, with **MapTiler** ve
 - **Exact locations are wanted** (so people can see how a shot was laid out). Camera has no GPS; pins are set by hand in the admin location widget. Stored as GeoJSON strings `{"type":"Point","coordinates":[lng,lat]}`. Pins grouped by identical coordinates with a count badge.
 - Testing: the sandbox can't reach MapTiler, and the key only works from marzooq.co.uk. Preview by opening the live page in the built-in browser and injecting the new map code with the JS tool; the pane's page is often `hidden`, so call `map.redraw()` in a loop before screenshotting.
 
-## Photo details (EXIF): planned
+## Photo details (EXIF)
 
-Lightbox "Details +" link (closed by default) showing camera · focal length · aperture · shutter · ISO, plus a small locator map. The current 23 images have no EXIF (stripped at export). He'll re-export from Lightroom with Metadata "All Except Camera Raw Info" later; then the build reads EXIF. Any sRGB conversion must keep EXIF.
+Lightbox "Details +" button (closed by default; stays open while flicking through) shows `exif` from `photos.json`: camera · lens at focal · aperture · shutter · ISO (`exifLine` filter, `data-exif` on each `.shot`). Editable in admin under each photo ("Camera settings"). Filled 13 Nov 2026 for 26 of 35 photos by matching the site JPEGs to his originals in `D:\LightroomStorage\Lightroom CC\...\originals` (perceptual hashes; borderline matches checked by eye) and reading EXIF + Canon makernote lens from the CR2/JPG. Lenses: EF-S 10-18mm f/4.5-5.6 IS STM, EF-S 18-55mm f/3.5-5.6 (IS and non-IS reported), EF 70-210mm f/3.5-4.5 USM. Not found locally (probably phone shots or cloud-only originals): personal-08, 19, 20, 21, 22, 23; commission-02, 08, 12. No locator map (the Map tab already covers it).
 
 ## SEO
 
@@ -136,7 +136,7 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 
 ## Open items (as of 11 Nov 2026)
 
-- Photo EXIF: re-export, then build the Details panel.
+- Camera details missing for personal-08, 19-23 and commission-02, 08, 12.
 
 - Public CV PDF (no phone, academic framing), then upload via admin.
 - Telephone Fundraiser CV entry has no bullet points yet.

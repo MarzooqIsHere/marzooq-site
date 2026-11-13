@@ -74,6 +74,13 @@ async function fetchCovers() {
 }
 
 export default function (eleventyConfig) {
+  // "Canon EOS 550D · 18-55mm at 55mm · f/6.3 · 1/200s · ISO 200" for the lightbox Details line.
+  eleventyConfig.addFilter("exifLine", (x) => {
+    if (!x) return "";
+    const lens = x.lens && x.focal ? `${x.lens} at ${x.focal}` : (x.lens || x.focal);
+    return [x.camera, lens, x.aperture, x.shutter, x.iso].filter(Boolean).join(" · ");
+  });
+
   // Substack cover images can be 5000px wide; ask Substack's image CDN for a small copy instead.
   eleventyConfig.addFilter("substackThumb", (url, w = 320) =>
     url && url.includes("substack-post-media.s3.amazonaws.com")

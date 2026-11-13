@@ -19,7 +19,7 @@ permalink: /photography/
 <div id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
   <div class="gallery">
     {%- for p in photos.personal %}
-    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
+    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" data-exif="{{ p.exif | exifLine }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
       <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} {{ p.image | srcset("(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 100vw") | safe }} loading="{{ "eager" if loop.first else "lazy" }}"{% if loop.first %} fetchpriority="high"{% endif %}>
     </button>
     {%- endfor %}
@@ -39,7 +39,7 @@ permalink: /photography/
   </div>
   <div class="gallery">
     {%- for p in photos.commissions %}
-    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
+    <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" data-exif="{{ p.exif | exifLine }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
       <img class="dev" src="{{ p.image }}" alt="{{ p.alt or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} {{ p.image | srcset("(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 100vw") | safe }} loading="lazy">
     </button>
     {%- endfor %}
@@ -72,5 +72,7 @@ permalink: /photography/
       <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
       {% t "View on map", "Gweld ar y map" %}
     </button>
+    <button type="button" class="lb-details" aria-expanded="false" aria-controls="lb-exif" hidden>{% t "Details", "Manylion" %} <span class="sign-mini" aria-hidden="true">+</span></button>
+    <p class="lb-exif" id="lb-exif" hidden></p>
   </div>
 </dialog>

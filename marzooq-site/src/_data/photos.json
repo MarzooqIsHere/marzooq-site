@@ -5,98 +5,210 @@
       "caption": "Ynys Llanddwyn",
       "featured": true,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.4115, 53.1385]}",
-      "alt": "Ruined stone walls lit gold at sunset, framing a small white lighthouse and distant mountains"
+      "alt": "Ruined stone walls lit gold at sunset, framing a small white lighthouse and distant mountains",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "55mm",
+        "aperture": "f/6.3",
+        "shutter": "1/200s",
+        "iso": "ISO 200"
+      }
     },
     {
       "image": "/images/personal/personal-14.jpg",
       "caption": "Jabal al-Nour",
       "featured": true,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
-      "alt": "Two birds flying over layers of blue mountain ridges in haze"
+      "alt": "Two birds flying over layers of blue mountain ridges in haze",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "55mm",
+        "aperture": "f/5.6",
+        "shutter": "1/200s",
+        "iso": "ISO 3200"
+      }
     },
     {
       "image": "/images/personal/personal-11.jpg",
       "caption": "Jabal al-Nour",
       "featured": true,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
-      "alt": "Narrow streets glowing orange at night, seen from high above"
+      "alt": "Narrow streets glowing orange at night, seen from high above",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "155mm",
+        "aperture": "f/4.5",
+        "shutter": "1/200s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-01.jpg",
       "caption": "Llyn Ogwen, Eryri",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.013, 53.1236]}",
-      "alt": "A young man playing a ukulele beside a lake under low cloud and mountains"
+      "alt": "A young man playing a ukulele beside a lake under low cloud and mountains",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "10-18mm",
+        "focal": "16mm",
+        "aperture": "f/25",
+        "shutter": "1/250s",
+        "iso": "ISO 400"
+      }
     },
     {
       "image": "/images/personal/personal-06.jpg",
       "caption": "Newborough Forest, Anglesey",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.393, 53.153]}",
-      "alt": "Two people walking down a road between tall pines towards the sea and mountains"
+      "alt": "Two people walking down a road between tall pines towards the sea and mountains",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "70mm",
+        "aperture": "f/14",
+        "shutter": "1/250s",
+        "iso": "ISO 1600"
+      }
     },
     {
       "image": "/images/personal/personal-16.jpg",
       "caption": "Bristol Museum & Art Gallery",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-2.6052, 51.456]}",
-      "alt": "A man in a suit laughing in an armchair beneath an ornate stone staircase and statues"
+      "alt": "A man in a suit laughing in an armchair beneath an ornate stone staircase and statues",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "28mm",
+        "aperture": "f/4.5",
+        "shutter": "1/100s",
+        "iso": "ISO 3200"
+      }
     },
     {
       "image": "/images/personal/personal-15.jpg",
       "caption": "Bristol Harbourside",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-2.5985, 51.4493]}",
-      "alt": "Low sun glittering on the harbour behind a moored sailing boat, a couple sitting on the pontoon"
+      "alt": "Low sun glittering on the harbour behind a moored sailing boat, a couple sitting on the pontoon",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "42mm",
+        "aperture": "f/16",
+        "shutter": "1/250s",
+        "iso": "ISO 100"
+      }
     },
     {
       "image": "/images/personal/personal-09.jpg",
       "caption": "Makkah",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8215, 21.419]}",
-      "alt": "A long covered walkway at night, warm lights reflecting on the floor beside a parked bus"
+      "alt": "A long covered walkway at night, warm lights reflecting on the floor beside a parked bus",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "53mm",
+        "aperture": "f/5.6",
+        "shutter": "1/200s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-04.jpg",
       "caption": "South Stack, Anglesey",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.695, 53.307]}",
-      "alt": "Grassy sea cliffs dropping into dark, churning water"
+      "alt": "Grassy sea cliffs dropping into dark, churning water",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "70mm",
+        "aperture": "f/10",
+        "shutter": "1/250s",
+        "iso": "ISO 400"
+      }
     },
     {
       "image": "/images/personal/personal-07.jpg",
       "caption": "Plymouth",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.1417, 50.3642]}",
-      "alt": "A woman in a red coat by the sea wall at dusk, a wooded island behind her"
+      "alt": "A woman in a red coat by the sea wall at dusk, a wooded island behind her",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "70mm",
+        "aperture": "f/7.1",
+        "shutter": "1/250s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-13.jpg",
       "caption": "Jabal al-Nour",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
-      "alt": "A city at night glimpsed through a gap in dark rock, pilgrims in white caps below"
+      "alt": "A city at night glimpsed through a gap in dark rock, pilgrims in white caps below",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "55mm",
+        "aperture": "f/5.6",
+        "shutter": "1/200s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-18.jpg",
       "caption": "Penarth Pier",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-3.1663, 51.4343]}",
-      "alt": "A Victorian pier and its pavilion silhouetted against a pink and violet dusk sky"
+      "alt": "A Victorian pier and its pavilion silhouetted against a pink and violet dusk sky",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "38mm",
+        "aperture": "f/5",
+        "shutter": "1/200s",
+        "iso": "ISO 100"
+      }
     },
     {
       "image": "/images/personal/personal-02.jpg",
       "caption": "Llanddwyn Beach, Anglesey",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-4.386, 53.144]}",
-      "alt": "A figure in a heavy coat facing the waves on a beach at dusk"
+      "alt": "A figure in a heavy coat facing the waves on a beach at dusk",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "92mm",
+        "aperture": "f/9",
+        "shutter": "1/250s",
+        "iso": "ISO 200"
+      }
     },
     {
       "image": "/images/personal/personal-05.jpg",
       "caption": "Mumbles, Swansea",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-3.98, 51.5675]}",
-      "alt": "Two people standing at the water's edge on a rocky shore as waves roll in at blue hour"
+      "alt": "Two people standing at the water's edge on a rocky shore as waves roll in at blue hour",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "48mm",
+        "aperture": "f/8",
+        "shutter": "1/160s",
+        "iso": "ISO 1600"
+      }
     },
     {
       "image": "/images/personal/personal-08.jpg",
@@ -110,21 +222,45 @@
       "caption": "Jabal al-Nour",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
-      "alt": "Lights of a city spread through a valley between dark mountains at night"
+      "alt": "Lights of a city spread through a valley between dark mountains at night",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "25mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-12.jpg",
       "caption": "Jabal al-Nour",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
-      "alt": "A man in a white cap checking his phone against a hazy purple mountain view"
+      "alt": "A man in a white cap checking his phone against a hazy purple mountain view",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "70mm",
+        "aperture": "f/3.5",
+        "shutter": "1/200s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-17.jpg",
       "caption": "H. H. Wills Physics Laboratory, Bristol",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-2.6027, 51.4584]}",
-      "alt": "Two young men in white shirts chatting outside a stone building with tall windows"
+      "alt": "Two young men in white shirts chatting outside a stone building with tall windows",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "41mm",
+        "aperture": "f/5",
+        "shutter": "1/100s",
+        "iso": "ISO 200"
+      }
     },
     {
       "image": "/images/personal/personal-19.jpg",
@@ -166,7 +302,15 @@
     {
       "image": "/images/commissions/commission-01.jpg",
       "caption": "",
-      "alt": "Guests raising wine glasses in a toast over a candlelit dinner table"
+      "alt": "Guests raising wine glasses in a toast over a candlelit dinner table",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "85mm",
+        "aperture": "f/3.5",
+        "shutter": "1/200s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-02.jpg",
@@ -176,27 +320,67 @@
     {
       "image": "/images/commissions/commission-03.jpg",
       "caption": "",
-      "alt": "A band playing in a warmly lit room, the bassist in a blue shirt in front"
+      "alt": "A band playing in a warmly lit room, the bassist in a blue shirt in front",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "10-18mm",
+        "focal": "18mm",
+        "aperture": "f/5.6",
+        "shutter": "1/100s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-04.jpg",
       "caption": "",
-      "alt": "A crowd dancing, one arm raised, in a bright room with tall windows"
+      "alt": "A crowd dancing, one arm raised, in a bright room with tall windows",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "70mm",
+        "aperture": "f/3.5",
+        "shutter": "1/160s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-05.jpg",
       "caption": "",
-      "alt": "Three friends posing together at a formal event"
+      "alt": "Three friends posing together at a formal event",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "140mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "ISO 3200"
+      }
     },
     {
       "image": "/images/commissions/commission-06.jpg",
       "caption": "",
-      "alt": "Four people in evening wear on a balcony beneath a carved wooden ceiling"
+      "alt": "Four people in evening wear on a balcony beneath a carved wooden ceiling",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "49mm",
+        "aperture": "f/7.1",
+        "shutter": "1/125s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-07.jpg",
       "caption": "",
-      "alt": "Friends laughing on a dance floor with balloons and glow sticks"
+      "alt": "Friends laughing on a dance floor with balloons and glow sticks",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "160mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-08.jpg",
@@ -206,17 +390,41 @@
     {
       "image": "/images/commissions/commission-09.jpg",
       "caption": "",
-      "alt": "People dancing beneath portraits in a wood-panelled hall"
+      "alt": "People dancing beneath portraits in a wood-panelled hall",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "51mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-10.jpg",
       "caption": "",
-      "alt": "Silhouetted crowd facing bright stage lights at a party"
+      "alt": "Silhouetted crowd facing bright stage lights at a party",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "39mm",
+        "aperture": "f/6.3",
+        "shutter": "1/125s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-11.jpg",
       "caption": "",
-      "alt": "Three friends smiling together under magenta light"
+      "alt": "Three friends smiling together under magenta light",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "29mm",
+        "aperture": "f/4.5",
+        "shutter": "1/125s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/commissions/commission-12.jpg",
