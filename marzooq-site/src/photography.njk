@@ -20,7 +20,7 @@ permalink: /photography/
   <div class="gallery">
     {%- for p in photos.personal %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} loading="lazy">
+      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} {{ p.image | srcset("(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 100vw") | safe }} loading="{{ "eager" if loop.first else "lazy" }}"{% if loop.first %} fetchpriority="high"{% endif %}>
     </button>
     {%- endfor %}
   </div>
@@ -35,12 +35,12 @@ permalink: /photography/
 <div id="panel-commissions" role="tabpanel" aria-labelledby="tab-commissions" hidden>
   <div class="book band">
     <p>{% t "Graduations, formals, society events and headshots in Bristol. Get in touch for a quote.", "Graddio, digwyddiadau ffurfiol, digwyddiadau cymdeithasau a lluniau proffil ym Mryste. Cysylltwch am bris." %}</p>
-    <a class="amber-link" href="mailto:me@marzooq.co.uk?subject=Photography%20enquiry">{% t "Email me to book →", "E-bostiwch fi i archebu →" %}</a>
+    <a class="amber-link" data-mail data-subject="Photography enquiry" href="/privacy/#contact">{% t "Email me to book →", "E-bostiwch fi i archebu →" %}</a>
   </div>
   <div class="gallery">
     {%- for p in photos.commissions %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
+      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} {{ p.image | srcset("(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 100vw") | safe }} loading="lazy">
     </button>
     {%- endfor %}
   </div>

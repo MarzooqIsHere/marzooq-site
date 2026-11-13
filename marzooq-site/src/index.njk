@@ -8,7 +8,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
 
 <section class="hero">
   <figure class="portrait">
-    <img src="/images/portrait-brandon-hill.jpg" alt="Portrait of Marzooq Subhani at Brandon Hill, Bristol" width="1200" height="1800" fetchpriority="high">
+    <img src="/images/portrait-brandon-hill.jpg" {{ "/images/portrait-brandon-hill.jpg" | srcset("(min-width: 900px) 40vw, 100vw") | safe }} alt="Portrait of Marzooq Subhani at Brandon Hill, Bristol" width="1200" height="1800" fetchpriority="high">
     <figcaption class="label">{% t "Brandon Hill, Bristol", "Brandon Hill, Bryste" %}</figcaption>
   </figure>
   <div class="hero-text">
@@ -37,7 +37,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
   <div class="strip">
     {%- for p in photos.personal | selectattr("featured") %}{% if loop.index <= 3 %}
     <figure>
-      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} loading="lazy">
+      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} {{ p.image | srcset("(min-width: 900px) 30vw, 100vw") | safe }} loading="lazy">
       {% if p.caption %}<figcaption class="label">{{ p.caption }}</figcaption>{% endif %}
     </figure>
     {% endif %}{%- endfor %}
@@ -60,7 +60,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
     <div class="posts">
       {%- for post in writing | featuredPosts(substack) %}
       <a class="post" href="{{ post.url }}" target="_blank" rel="noopener">
-        {% if post.cover %}<img src="{{ post.cover }}" alt="" width="300" height="200" loading="lazy">{% else %}<span class="cover-blank" aria-hidden="true"></span>{% endif %}
+        {% if post.cover %}<img src="{{ post.cover | substackThumb }}" srcset="{{ post.cover | substackThumb }} 320w, {{ post.cover | substackThumb(640) }} 640w" sizes="140px" data-orig="{{ post.cover }}" onerror="this.onerror=null;this.removeAttribute('srcset');this.src=this.dataset.orig" alt="" width="300" height="200" loading="lazy">{% else %}<span class="cover-blank" aria-hidden="true"></span>{% endif %}
         <span class="post-text">
           <span class="post-title">{{ post.title }}</span>
           <span class="post-sub">{{ post.subtitle }}</span>
@@ -72,7 +72,7 @@ description: "Marzooq Subhani: Mathematics and Philosophy student at the Univers
     <form class="subscribe" action="https://groundedbymarzooq.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
       <label for="sub-email">{% t "New essays from <em>Grounded</em>, straight to your inbox.", "Ysgrifau newydd o <em>Grounded</em>, yn syth i'ch mewnflwch." %}</label>
       <div class="sub-row">
-        <input type="email" id="sub-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        <input type="email" id="sub-email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="you@example.com">
         <button type="submit" class="amber-link">{% t "Subscribe →", "Tanysgrifio →" %}</button>
       </div>
     </form>

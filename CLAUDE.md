@@ -114,6 +114,18 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 - **404**: random personal photo ("Frame 404 of 36"), light-leak overlay, "Develop another frame →" reroll, links to every section.
 - **Kit and process**: collapsible section at the bottom of /photography/, from `_data/kit.json` (admin: "Kit (photography page)"). `.kit-body[hidden]` needs its own display:none (the grid rule overrides `hidden`).
 
+## Launch checklist pass (13 Nov 2026)
+
+- **Fonts self-hosted** in `src/assets/fonts/` (latin + latin-ext woff2 from @fontsource; Welsh needs latin-ext), declared in `assets/css/fonts.css`, two preloaded. No Google Fonts request any more.
+- **Responsive photos**: `eleventy.after` makes 640/1200px WebP copies of `images/{personal,commissions,uploads}` and the portrait into `_site/images/w/` (sharp); templates use the `srcset` filter. Originals stay as fallback and in the lightbox. First gallery image is eager + high priority.
+- **Substack covers** go through `substackThumb` (substackcdn image fetch, 320/640px) with an onerror fallback to the original.
+- **Email never appears in the HTML**: links are `data-mail` (+ optional `data-subject`) pointing at /privacy/#contact; `site.js` builds the mailto. `data-mail-text` spans get the address as text. Removed from JSON-LD too.
+- **/privacy/** "Privacy and use": GoatCounter, localStorage prefs, MapTiler/MapLibre, Substack, photo/writing reuse terms, contact. Linked from the footer colophon. No cookie banner (no cookies). Update its "Last updated" line if anything changes (e.g. a new third-party service).
+- **Favicons**: SVG + `favicon-32.png` + `apple-touch-icon.png` (180px). 404 has `noindex`.
+- **Spotify**: `_data/links.json` `spotify` (admin: "Links"); when set, a music-note icon appears in the footer.
+- Checked: no secrets in the repo (MapTiler key is public by design); WCAG contrast of all palette pairs ≥ 5:1; no horizontal overflow at 390px; no broken internal links; Lighthouse (local, no gzip) home 98 perf / 100 a11y / 100 SEO.
+- Enforce HTTPS can't be set from here (GitHub API blocked through the proxy); he has to tick it.
+
 ## How to make changes (Claude sessions)
 
 1. Attach the repo with `add_repo` (owner `MarzooqIsHere`, repo `marzooq-site`, access `push`), then clone. The Claude GitHub App is installed on this repo, so pushes work.

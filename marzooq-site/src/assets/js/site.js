@@ -22,7 +22,7 @@
   var langBtn = document.getElementById("lang-toggle");
   function syncLang() {
     if (langBtn) langBtn.setAttribute("aria-label", root.dataset.lang === "cy"
-      ? "Switch to English (Newid i'r Saesneg)" : "Newid i'r Gymraeg (Switch to Welsh)");
+      ? "EN / CY: switch to English (Newid i'r Saesneg)" : "EN / CY: Newid i'r Gymraeg (switch to Welsh)");
   }
   if (langBtn) langBtn.addEventListener("click", function () {
     var next = root.dataset.lang === "cy" ? "en" : "cy";
@@ -318,6 +318,14 @@
       if (lastSpine) { lastSpine.classList.remove("out"); lastSpine.focus(); }
     });
   }
+
+  // Email is put together here rather than written into the HTML, so address-scraping bots don't find it.
+  var mail = ["me", "marzooq.co.uk"].join("@");
+  document.querySelectorAll("[data-mail]").forEach(function (a) {
+    var sub = a.getAttribute("data-subject");
+    a.href = "mailto:" + mail + (sub ? "?subject=" + encodeURIComponent(sub) : "");
+  });
+  document.querySelectorAll("[data-mail-text]").forEach(function (el) { el.textContent = mail; });
 
   // Photos "develop" as they load: fade up from a warm dark tone, then drop the effect
   function develop(im) {

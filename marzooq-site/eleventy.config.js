@@ -1,5 +1,16 @@
 import fs from "node:fs";
 import jpeg from "jpeg-js";
+import sharp from "sharp";
+import path from "node:path";
+
+// Smaller WebP copies of photos, made after each build into _site/images/w/.
+// Templates point at them through the `srcset` filter; the original JPEG stays as the fallback
+// and is still what the lightbox opens.
+const RESPONSIVE_DIRS = ["personal", "commissions", "uploads"];
+const WIDTHS = [640, 1200];
+const variantName = (url, w) => `/images/w/${url.replace(/^\/images\//, "").replace(/\//g, "-").replace(/\.[a-z]+$/i, "")}-${w}.webp`;
+const EXTRA = ["/images/portrait-brandon-hill.jpg"];
+const isResponsive = (url) => typeof url === "string" && (EXTRA.includes(url) || (RESPONSIVE_DIRS.some((d) => url.startsWith(`/images/${d}/`)) && /\.(jpe?g|png)$/i.test(url)));
 
 // Read width/height from a JPEG or PNG header, so <img> tags can reserve their space.
 const sizeCache = new Map();
@@ -63,6 +74,48 @@ async function fetchCovers() {
 }
 
 export default function (eleventyConfig) {
+  // Substack cover images can be 5000px wide; ask Substack's image CDN for a small copy instead.
+  eleventyConfig.addFilter("substackThumb", (url, w = 320) =>
+    url && url.includes("substack-post-media.s3.amazonaws.com")
+      ? `https://substackcdn.com/image/fetch/w_${w},h_${Math.round(w * 2 / 3)},c_fill,f_auto,q_auto:good/${encodeURIComponent(url)}`
+      : url);
+
+  // {{ p.image | srcset("(min-width: 900px) 33vw, 100vw") | safe }}
+  eleventyConfig.addFilter("srcset", (url, sizes) => {
+    if (!isResponsive(url)) return "";
+    const s = imageSize(url);
+    const ws = WIDTHS.filter((w) => !s || w <= s.w);
+    if (!ws.length) return "";
+    const set = ws.map((w) => `${variantName(url, w)} ${w}w`).concat(s && s.w > ws[ws.length - 1] ? [`${url} ${s.w}w`] : []);
+    return `srcset="${set.join(", ")}" sizes="${sizes || "100vw"}"`;
+  });
+
+  eleventyConfig.on("eleventy.after", async ({ dir }) => {
+    const out = path.join(dir.output, "images/w");
+    fs.mkdirSync(out, { recursive: true });
+    const jobs = [];
+    for (const d of RESPONSIVE_DIRS) {
+      const src = path.join("src/images", d);
+      if (!fs.existsSync(src)) continue;
+      for (const f of fs.readdirSync(src)) {
+        if (!/\.(jpe?g|png)$/i.test(f)) continue;
+        const url = `/images/${d}/${f}`;
+        for (const w of WIDTHS) {
+          const dest = path.join(dir.output, variantName(url, w));
+          if (fs.existsSync(dest)) continue;
+          jobs.push(sharp(path.join(src, f)).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 74 }).toFile(dest));
+        }
+      }
+    }
+    for (const url of EXTRA) {
+      for (const w of WIDTHS) {
+        const dest = path.join(dir.output, variantName(url, w));
+        if (!fs.existsSync(dest)) jobs.push(sharp(path.join("src", url)).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 78 }).toFile(dest));
+      }
+    }
+    await Promise.all(jobs);
+  });
+
   eleventyConfig.on("eleventy.before", fetchCovers);
   // Spine for a Shelf book: height/width vary per title (stable), colour from its cover (or a cloth colour)
   const CLOTHS = ["#5A3A2A", "#2E3A34", "#6B5A3E", "#3B2F4A", "#7A4A2A", "#2A3A4A", "#4A2A2A", "#3E4A2E"];

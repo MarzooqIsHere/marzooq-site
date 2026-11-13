@@ -58,6 +58,12 @@ collections:
               - { name: url, label: Substack link, widget: string }
               - { name: blurb, label: "Blurb (optional, replaces the Substack subtitle)", widget: string, required: false }
 
+      - name: links
+        label: Links
+        file: marzooq-site/src/_data/links.json
+        fields:
+          - { name: spotify, label: "Spotify playlist or profile link (shows a music icon in the footer; leave empty to hide)", widget: string, required: false }
+
       - name: kit
         label: Kit (photography page)
         file: marzooq-site/src/_data/kit.json

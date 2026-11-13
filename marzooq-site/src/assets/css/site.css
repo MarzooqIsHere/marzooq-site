@@ -416,6 +416,12 @@ dialog#book[open] .pulled-book:not([hidden]) { animation: pick-up .45s cubic-bez
 @media (max-width: 760px) { .lost { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; } }
 @media (prefers-reduced-motion: reduce) { .leak { animation: none; } }
 
+/* ---------- Prose pages (privacy) ---------- */
+.prose { max-width: 680px; padding: 0 0 96px; }
+.prose h2 { font-size: clamp(26px, 3vw, 32px); margin: 48px 0 12px; }
+.prose p { font-size: 17px; line-height: 1.75; margin: 0 0 16px; }
+.colophon a { color: inherit; }
+
 /* ---------- Print (mainly the CV) ---------- */
 .print-only { display: none; }
 @media print {
