@@ -215,7 +215,15 @@
       "caption": "Roath Park Lake, Cardiff",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-3.1728, 51.505]}",
-      "alt": "A man in a hood and face mask lit blue at night, a red lighthouse glowing on the lake behind"
+      "alt": "A man in a hood and face mask lit blue at night, a red lighthouse glowing on the lake behind",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "25mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "ISO 6400"
+      }
     },
     {
       "image": "/images/personal/personal-10.jpg",
@@ -267,35 +275,75 @@
       "caption": "Agafay Desert, Marrakesh",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-8.205, 31.44]}",
-      "alt": "A quad bike kicking up dust across bare desert hills"
+      "alt": "A quad bike kicking up dust across bare desert hills",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "55mm",
+        "aperture": "f/5.6",
+        "shutter": "1/320s",
+        "iso": "ISO 100"
+      }
     },
     {
       "image": "/images/personal/personal-20.jpg",
       "caption": "Jardin Majorelle, Marrakesh",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}",
-      "alt": "A terracotta building seen through palm trees and dense garden greenery"
+      "alt": "A terracotta building seen through palm trees and dense garden greenery",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "31mm",
+        "aperture": "f/5.6",
+        "shutter": "1/80s",
+        "iso": "ISO 200"
+      }
     },
     {
       "image": "/images/personal/personal-21.jpg",
       "caption": "Jardin Majorelle, Marrakesh",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}",
-      "alt": "Oranges ripening on a tree against bright blue sky"
+      "alt": "Oranges ripening on a tree against bright blue sky",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "49mm",
+        "aperture": "f/5.6",
+        "shutter": "1/160s",
+        "iso": "ISO 100"
+      }
     },
     {
       "image": "/images/personal/personal-22.jpg",
       "caption": "Ben Youssef Madrasa, Marrakesh",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-7.9862, 31.6318]}",
-      "alt": "A man looking out of a small window set into intricately carved stucco walls"
+      "alt": "A man looking out of a small window set into intricately carved stucco walls",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "18-55mm",
+        "focal": "52mm",
+        "aperture": "f/8",
+        "shutter": "1/250s",
+        "iso": "ISO 100"
+      }
     },
     {
       "image": "/images/personal/personal-23.jpg",
       "caption": "Clifton Suspension Bridge, Bristol",
       "featured": false,
       "location": "{\"type\": \"Point\", \"coordinates\": [-2.6278, 51.4549]}",
-      "alt": "The deck of a suspension bridge lit up at night, cars crossing in the dark"
+      "alt": "The deck of a suspension bridge lit up at night, cars crossing in the dark",
+      "exif": {
+        "camera": "Canon EOS 550D",
+        "lens": "70-210mm",
+        "focal": "115mm",
+        "aperture": "f/4",
+        "shutter": "1/100s",
+        "iso": "ISO 6400"
+      }
     }
   ],
   "commissions": [
