@@ -1,9 +1,28 @@
 ---
 layout: base.njk
 title: Not found
+description: "This page didn't develop."
 permalink: /404.html
+eleventyExcludeFromCollections: true
 ---
-<section class="page-head">
-  <h1>{% t "Nothing here.", "Does dim byd yma." %}</h1>
-  <p class="intro"><a href="/">{% t "Back to the homepage →", "Yn ôl i'r hafan →" %}</a></p>
+<section class="lost">
+  <figure class="lost-frame">
+    <img class="dev" id="lost-img" src="/images/personal/personal-18.jpg" alt="" width="1200" height="800">
+    <span class="leak" aria-hidden="true"></span>
+    <figcaption class="label amber">{% t "Frame 404 of 36", "Ffrâm 404 o 36" %}</figcaption>
+  </figure>
+  <div class="lost-text">
+    <h1>{% t "This one didn't develop.", "Wnaeth hwn ddim datblygu." %}</h1>
+    <p class="intro">{% t "Either the page is still sitting in the fixer, or it was never on the roll. A light leak, a wrong turn, a typo. It happens to the best of us.", "Naill ai mae'r dudalen yn dal yn y gosodydd, neu doedd hi erioed ar y rholyn. Golau'n gollwng, tro anghywir, teipo. Mae'n digwydd i bawb." %}</p>
+    <button type="button" class="amber-link" id="lost-again">{% t "Develop another frame →", "Datblygu ffrâm arall →" %}</button>
+    <p class="lost-go label">{% t "Or try", "Neu rhowch gynnig ar" %}</p>
+    <nav class="lost-links" aria-label="Elsewhere on the site">
+      <a href="/">{% t "Home", "Hafan" %}</a>
+      <a href="/photography/">{% t "Photography", "Ffotograffiaeth" %}</a>
+      <a href="/shelf/">{% t "Shelf", "Silff" %}</a>
+      <a href="/cv/">CV</a>
+      <a href="https://groundedbymarzooq.substack.com" target="_blank" rel="noopener"><em>Grounded</em></a>
+    </nav>
+  </div>
 </section>
+<script id="lost-data" type="application/json">{{ photos.personal | json | safe }}</script>

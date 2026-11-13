@@ -35,6 +35,7 @@ collections:
             fields:
               - { name: image, label: Photo, widget: image }
               - { name: caption, label: Caption (place), widget: string, required: false }
+              - { name: alt, label: "Description (for screen readers and Google)", widget: string, required: false }
               - { name: location, label: "Location (click the map to drop a pin)", widget: map, type: Point, required: false }
               - { name: featured, label: Show on homepage, widget: boolean, default: false }
           - name: commissions
@@ -43,6 +44,7 @@ collections:
             fields:
               - { name: image, label: Photo, widget: image }
               - { name: caption, label: Caption, widget: string, required: false }
+              - { name: alt, label: "Description (for screen readers and Google)", widget: string, required: false }
 
       - name: writing
         label: Featured writing
@@ -55,6 +57,18 @@ collections:
             fields:
               - { name: url, label: Substack link, widget: string }
               - { name: blurb, label: "Blurb (optional, replaces the Substack subtitle)", widget: string, required: false }
+
+      - name: kit
+        label: Kit (photography page)
+        file: marzooq-site/src/_data/kit.json
+        fields:
+          - name: items
+            label: Lines
+            widget: list
+            summary: "{{fields.label}}: {{fields.value}}"
+            fields:
+              - { name: label, label: "Label (e.g. Camera)", widget: string }
+              - { name: value, label: Text, widget: string }
 
       - name: shelf
         label: Shelf

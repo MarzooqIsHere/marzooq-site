@@ -105,6 +105,15 @@ Sitemap, robots.txt (disallows /admin), per-page `description` front matter, can
 - Footer colophon: "Built in Bristol and Cardiff · updated <date>", date = last git commit (`_data/updated.js`), EN/CY.
 - `@media print` in site.css: white page, nav/footer hidden, all CV sections expanded, `.print-only` name + contact line on /cv/.
 
+## Link previews, alt text, small touches (Nov 2026)
+
+- **Per-page share images**: `src/images/og/{home,photography,shelf,cv}.jpg` (1200×630, Darkroom style), picked by `ogImage:` front matter (default `home`). Made with `tools/og/gen.py` (Playwright + @fontsource fonts installed in /tmp/fonts); rerun and recommit if his roles or the hero photo change. The home card frames him as a hub (philosophy, writing, photographs, ResSoc, Cardiff).
+- **Alt text**: `alt` on every entry in `photos.json` (Claude-written descriptions; no names of people in photos), editable in admin as "Description". Templates use alt + caption; lightbox copies the thumbnail's alt.
+- **Subscribe box** under Writing on the home page posts to Substack's `/api/v1/free?nojs=true` in a new tab.
+- **"Developing" fade-in**: `img.dev` (gallery, strip, 404) fades up from a dark sepia; `.js` class set in the head script so no-JS visitors see photos normally; respects reduced motion.
+- **404**: random personal photo ("Frame 404 of 36"), light-leak overlay, "Develop another frame →" reroll, links to every section.
+- **Kit and process**: collapsible section at the bottom of /photography/, from `_data/kit.json` (admin: "Kit (photography page)"). Lens line still to add once he says what he uses.
+
 ## How to make changes (Claude sessions)
 
 1. Attach the repo with `add_repo` (owner `MarzooqIsHere`, repo `marzooq-site`, access `push`), then clone. The Claude GitHub App is installed on this repo, so pushes work.

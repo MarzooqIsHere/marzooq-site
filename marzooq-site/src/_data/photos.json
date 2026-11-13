@@ -4,189 +4,224 @@
       "image": "/images/personal/personal-03.jpg",
       "caption": "Ynys Llanddwyn",
       "featured": true,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.4115, 53.1385]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.4115, 53.1385]}",
+      "alt": "Ruined stone walls lit gold at sunset, framing a small white lighthouse and distant mountains"
     },
     {
       "image": "/images/personal/personal-14.jpg",
       "caption": "Jabal al-Nour",
       "featured": true,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
+      "alt": "Two birds flying over layers of blue mountain ridges in haze"
     },
     {
       "image": "/images/personal/personal-11.jpg",
       "caption": "Jabal al-Nour",
       "featured": true,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
+      "alt": "Narrow streets glowing orange at night, seen from high above"
     },
     {
       "image": "/images/personal/personal-01.jpg",
       "caption": "Llyn Ogwen, Eryri",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.013, 53.1236]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.013, 53.1236]}",
+      "alt": "A young man playing a ukulele beside a lake under low cloud and mountains"
     },
     {
       "image": "/images/personal/personal-06.jpg",
       "caption": "Newborough Forest, Anglesey",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.393, 53.153]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.393, 53.153]}",
+      "alt": "Two people walking down a road between tall pines towards the sea and mountains"
     },
     {
       "image": "/images/personal/personal-16.jpg",
       "caption": "Bristol Museum & Art Gallery",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6052, 51.456]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6052, 51.456]}",
+      "alt": "A man in a suit laughing in an armchair beneath an ornate stone staircase and statues"
     },
     {
       "image": "/images/personal/personal-15.jpg",
       "caption": "Bristol Harbourside",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-2.5985, 51.4493]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.5985, 51.4493]}",
+      "alt": "Low sun glittering on the harbour behind a moored sailing boat, a couple sitting on the pontoon"
     },
     {
       "image": "/images/personal/personal-09.jpg",
       "caption": "Makkah",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8215, 21.419]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8215, 21.419]}",
+      "alt": "A long covered walkway at night, warm lights reflecting on the floor beside a parked bus"
     },
     {
       "image": "/images/personal/personal-04.jpg",
       "caption": "South Stack, Anglesey",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.695, 53.307]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.695, 53.307]}",
+      "alt": "Grassy sea cliffs dropping into dark, churning water"
     },
     {
       "image": "/images/personal/personal-07.jpg",
       "caption": "Plymouth",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.1417, 50.3642]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.1417, 50.3642]}",
+      "alt": "A woman in a red coat by the sea wall at dusk, a wooded island behind her"
     },
     {
       "image": "/images/personal/personal-13.jpg",
       "caption": "Jabal al-Nour",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
+      "alt": "A city at night glimpsed through a gap in dark rock, pilgrims in white caps below"
     },
     {
       "image": "/images/personal/personal-18.jpg",
       "caption": "Penarth Pier",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1663, 51.4343]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1663, 51.4343]}",
+      "alt": "A Victorian pier and its pavilion silhouetted against a pink and violet dusk sky"
     },
     {
       "image": "/images/personal/personal-02.jpg",
       "caption": "Llanddwyn Beach, Anglesey",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-4.386, 53.144]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-4.386, 53.144]}",
+      "alt": "A figure in a heavy coat facing the waves on a beach at dusk"
     },
     {
       "image": "/images/personal/personal-05.jpg",
       "caption": "Mumbles, Swansea",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-3.98, 51.5675]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.98, 51.5675]}",
+      "alt": "Two people standing at the water's edge on a rocky shore as waves roll in at blue hour"
     },
     {
       "image": "/images/personal/personal-08.jpg",
       "caption": "Roath Park Lake, Cardiff",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1728, 51.505]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-3.1728, 51.505]}",
+      "alt": "A man in a hood and face mask lit blue at night, a red lighthouse glowing on the lake behind"
     },
     {
       "image": "/images/personal/personal-10.jpg",
       "caption": "Jabal al-Nour",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
+      "alt": "Lights of a city spread through a valley between dark mountains at night"
     },
     {
       "image": "/images/personal/personal-12.jpg",
       "caption": "Jabal al-Nour",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [39.8613, 21.4575]}",
+      "alt": "A man in a white cap checking his phone against a hazy purple mountain view"
     },
     {
       "image": "/images/personal/personal-17.jpg",
       "caption": "H. H. Wills Physics Laboratory, Bristol",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6027, 51.4584]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6027, 51.4584]}",
+      "alt": "Two young men in white shirts chatting outside a stone building with tall windows"
     },
     {
       "image": "/images/personal/personal-19.jpg",
       "caption": "Agafay Desert, Marrakesh",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-8.205, 31.44]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.205, 31.44]}",
+      "alt": "A quad bike kicking up dust across bare desert hills"
     },
     {
       "image": "/images/personal/personal-20.jpg",
       "caption": "Jardin Majorelle, Marrakesh",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}",
+      "alt": "A terracotta building seen through palm trees and dense garden greenery"
     },
     {
       "image": "/images/personal/personal-21.jpg",
       "caption": "Jardin Majorelle, Marrakesh",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-8.0033, 31.6417]}",
+      "alt": "Oranges ripening on a tree against bright blue sky"
     },
     {
       "image": "/images/personal/personal-22.jpg",
       "caption": "Ben Youssef Madrasa, Marrakesh",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-7.9862, 31.6318]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-7.9862, 31.6318]}",
+      "alt": "A man looking out of a small window set into intricately carved stucco walls"
     },
     {
       "image": "/images/personal/personal-23.jpg",
       "caption": "Clifton Suspension Bridge, Bristol",
       "featured": false,
-      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6278, 51.4549]}"
+      "location": "{\"type\": \"Point\", \"coordinates\": [-2.6278, 51.4549]}",
+      "alt": "The deck of a suspension bridge lit up at night, cars crossing in the dark"
     }
   ],
   "commissions": [
     {
       "image": "/images/commissions/commission-01.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Guests raising wine glasses in a toast over a candlelit dinner table"
     },
     {
       "image": "/images/commissions/commission-02.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Waiting staff carrying plates of chocolate dessert at a formal dinner"
     },
     {
       "image": "/images/commissions/commission-03.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "A band playing in a warmly lit room, the bassist in a blue shirt in front"
     },
     {
       "image": "/images/commissions/commission-04.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "A crowd dancing, one arm raised, in a bright room with tall windows"
     },
     {
       "image": "/images/commissions/commission-05.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Three friends posing together at a formal event"
     },
     {
       "image": "/images/commissions/commission-06.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Four people in evening wear on a balcony beneath a carved wooden ceiling"
     },
     {
       "image": "/images/commissions/commission-07.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Friends laughing on a dance floor with balloons and glow sticks"
     },
     {
       "image": "/images/commissions/commission-08.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Two people embracing on a dance floor in a wood-panelled hall"
     },
     {
       "image": "/images/commissions/commission-09.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "People dancing beneath portraits in a wood-panelled hall"
     },
     {
       "image": "/images/commissions/commission-10.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Silhouetted crowd facing bright stage lights at a party"
     },
     {
       "image": "/images/commissions/commission-11.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "Three friends smiling together under magenta light"
     },
     {
       "image": "/images/commissions/commission-12.jpg",
-      "caption": ""
+      "caption": "",
+      "alt": "A graduate in cap and gown standing on a narrow street by a stone staircase"
     }
   ]
 }

@@ -367,6 +367,53 @@ dialog#book[open] .pulled-book:not([hidden]) { animation: pick-up .45s cubic-bez
 .foot-text { display: flex; flex-direction: column; gap: 4px; }
 .colophon { font-size: 13px; }
 
+/* ---------- Photos "developing" as they load ---------- */
+.js img.dev { transition: opacity .7s ease, filter 1.8s ease; }
+.js img.dev:not(.in) { opacity: 0; filter: sepia(.7) brightness(.35) contrast(.85) blur(2px); }
+@media (prefers-reduced-motion: reduce) { .js img.dev, .js img.dev:not(.in) { transition: none; opacity: 1; filter: none; } }
+
+/* ---------- Subscribe to Grounded ---------- */
+.subscribe { margin-top: 44px; display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+.subscribe label { font-size: 16px; color: var(--muted); }
+.sub-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
+.sub-row input {
+  flex: 1 1 240px; min-height: 44px; padding: 8px 0; font: inherit; font-size: 17px;
+  color: var(--fg); background: none; border: 0; border-bottom: 1px solid var(--muted); border-radius: 0;
+}
+.sub-row input::placeholder { color: var(--muted); opacity: .6; }
+.sub-row input:focus { outline: none; border-bottom-color: var(--amber); }
+.sub-row button { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+
+/* ---------- Kit (photography page) ---------- */
+.kit { padding: 24px 0 80px; }
+.kit-toggle .cv-title { font-size: clamp(26px, 3vw, 32px); }
+.kit-body { margin: 8px 0 0 min(8vw, 96px); display: grid; gap: 18px; max-width: 640px; }
+.kit-body div { display: grid; grid-template-columns: 110px 1fr; gap: 4px 24px; align-items: baseline; }
+.kit-body dd { margin: 0; font-size: 17px; }
+@media (max-width: 600px) { .kit-body { margin-left: 0; } .kit-body div { grid-template-columns: 1fr; } }
+
+/* ---------- 404 ---------- */
+.lost { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 56px; align-items: center; padding: 72px 0 96px; }
+.lost-frame { position: relative; margin: 0; overflow: hidden; }
+.lost-frame img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; filter: sepia(.25) saturate(.8); }
+.lost-frame img.dev:not(.in) { filter: sepia(.7) brightness(.2) blur(3px); }
+.leak {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(ellipse 60% 90% at 105% 20%, rgba(255,120,60,.55), transparent 60%),
+              radial-gradient(ellipse 30% 60% at -5% 90%, rgba(212,149,104,.35), transparent 70%);
+  animation: leak 6s ease-in-out infinite alternate;
+}
+@keyframes leak { from { opacity: .55; } to { opacity: 1; } }
+.lost-frame figcaption { position: absolute; left: 14px; bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.lost-text { display: flex; flex-direction: column; gap: 20px; }
+.lost-text h1 { font-size: clamp(40px, 5vw, 60px); line-height: 1.05; margin: 0; }
+#lost-again { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; align-self: flex-start; }
+.lost-go { margin: 12px 0 0; }
+.lost-links { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.lost-links a { min-height: 44px; display: inline-flex; align-items: center; font-size: 17px; }
+@media (max-width: 760px) { .lost { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; } }
+@media (prefers-reduced-motion: reduce) { .leak { animation: none; } }
+
 /* ---------- Print (mainly the CV) ---------- */
 .print-only { display: none; }
 @media print {
@@ -377,7 +424,8 @@ dialog#book[open] .pulled-book:not([hidden]) { animation: pick-up .45s cubic-bez
   @page { margin: 16mm 16mm; }
   body { background: #fff; color: #1a1a1a; font-size: 11pt; }
   .wrap { padding: 0; max-width: none; }
-  .skip, .nav, .foot, .sign, .page-head a, .learner { display: none !important; }
+  .skip, .nav, .foot, .sign, .page-head a, .learner, .subscribe, .kit { display: none !important; }
+  .js img.dev { opacity: 1 !important; filter: none !important; }
   .print-only { display: inline; }
   .print-contact { display: block; margin: 4pt 0 0; font-size: 10pt; color: #555; }
   .band { background: none !important; box-shadow: none !important; clip-path: none !important; }

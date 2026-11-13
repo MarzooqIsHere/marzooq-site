@@ -83,7 +83,7 @@
       idx = (i + list.length) % list.length;
       var b = list[idx];
       current = b.dataset.full;
-      img.src = current; img.alt = b.dataset.caption || "";
+      img.src = current; var t = b.querySelector("img"); img.alt = (t && t.alt) || b.dataset.caption || "";
       cap.textContent = b.dataset.caption || "";
       if (mapBtn) mapBtn.hidden = b.dataset.mappable !== "true";
       var many = list.length > 1;
@@ -317,6 +317,36 @@
     bookDlg.addEventListener("close", function () {
       if (lastSpine) { lastSpine.classList.remove("out"); lastSpine.focus(); }
     });
+  }
+
+  // Photos "develop" as they load: fade up from a warm dark tone, then drop the effect
+  function develop(im) {
+    function go() {
+      requestAnimationFrame(function () { im.classList.add("in"); });
+      setTimeout(function () { im.classList.remove("dev", "in"); }, 2000);
+    }
+    if (im.complete && im.naturalWidth) go();
+    else { im.addEventListener("load", go, { once: true }); im.addEventListener("error", go, { once: true }); }
+  }
+  document.querySelectorAll("img.dev").forEach(develop);
+
+  // 404: show a random frame from the roll, and let people develop another
+  var lostImg = document.getElementById("lost-img"), lostData = document.getElementById("lost-data");
+  if (lostImg && lostData) {
+    var roll = []; try { roll = JSON.parse(lostData.textContent); } catch (e) {}
+    var last = -1;
+    var pick = function () {
+      if (!roll.length) return;
+      var i; do { i = Math.floor(Math.random() * roll.length); } while (roll.length > 1 && i === last);
+      last = i;
+      lostImg.classList.add("dev"); lostImg.classList.remove("in");
+      lostImg.alt = roll[i].alt || "";
+      lostImg.src = roll[i].image;
+      develop(lostImg);
+    };
+    pick();
+    var again = document.getElementById("lost-again");
+    if (again) again.addEventListener("click", pick);
   }
 
   // CV sections

@@ -1,5 +1,6 @@
 ---
 layout: base.njk
+ogImage: photography
 description: "Photography by Marzooq Subhani: landscapes and travel across Wales and beyond, plus graduation, event and headshot commissions in Bristol."
 title: Photography
 permalink: /photography/
@@ -19,7 +20,7 @@ permalink: /photography/
   <div class="gallery">
     {%- for p in photos.personal %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}"{% if p.location %} data-mappable="true"{% endif %} aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img src="{{ p.image }}" alt="{{ p.caption or 'Photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
+      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or p.caption or 'Photograph by Marzooq Subhani' }}{% if p.alt and p.caption %}, {{ p.caption }}{% endif %}" {{ p.image | dims | safe }} loading="lazy">
     </button>
     {%- endfor %}
   </div>
@@ -39,11 +40,25 @@ permalink: /photography/
   <div class="gallery">
     {%- for p in photos.commissions %}
     <button type="button" class="shot" data-full="{{ p.image }}" data-caption="{{ p.caption }}" aria-label="Open photo{% if p.caption %}: {{ p.caption }}{% endif %}">
-      <img src="{{ p.image }}" alt="{{ p.caption or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
+      <img class="dev" src="{{ p.image }}" alt="{{ p.alt or 'Commissioned photograph by Marzooq Subhani' }}" {{ p.image | dims | safe }} loading="lazy">
     </button>
     {%- endfor %}
   </div>
 </div>
+
+{% if kit.items.length %}
+<section class="kit">
+  <button type="button" class="cv-toggle kit-toggle" aria-expanded="false" aria-controls="kit-body">
+    <span class="cv-title">{% t "Kit and process", "Offer a phroses" %}</span>
+    <span class="sign" aria-hidden="true">+</span>
+  </button>
+  <dl class="kit-body" id="kit-body" hidden>
+    {%- for k in kit.items %}
+    <div><dt class="label amber">{{ k.label }}</dt><dd>{{ k.value }}</dd></div>
+    {%- endfor %}
+  </dl>
+</section>
+{% endif %}
 
 <dialog id="lightbox" aria-label="Photo viewer">
   <button type="button" class="lb-close" aria-label="Close">×</button>
