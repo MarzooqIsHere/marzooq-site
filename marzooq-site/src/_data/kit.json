@@ -1,8 +1,24 @@
 {
   "items": [
-    { "label": "Camera", "value": "Canon EOS 550D" },
-    { "label": "Editing", "value": "Lightroom, on the laptop and on my phone" },
-    { "label": "Files", "value": "Shot in RAW" },
-    { "label": "The look", "value": "Warm, soft and a little hazy: somewhere between old film and a faded print" }
+    {
+      "label": "Camera",
+      "value": "Canon EOS 550D"
+    },
+    {
+      "label": "Lenses",
+      "value": "10-18mm wide, 18-55mm everyday, 70-210mm zoom"
+    },
+    {
+      "label": "Editing",
+      "value": "Lightroom, on the laptop and on my phone"
+    },
+    {
+      "label": "Files",
+      "value": "Shot in RAW"
+    },
+    {
+      "label": "The look",
+      "value": "Warm, soft and a little hazy: somewhere between old film and a faded print"
+    }
   ]
 }
