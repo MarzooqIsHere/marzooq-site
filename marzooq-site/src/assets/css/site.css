@@ -178,7 +178,9 @@ dialog#lightbox {
   color: #EFE4D6;
 }
 dialog#lightbox::backdrop { background: rgba(10, 8, 6, .94); }
-dialog#lightbox { overscroll-behavior: contain; }
+dialog#lightbox { overscroll-behavior: contain; overflow: hidden; }
+/* Photo shrinks to leave room for the caption row (and Details when open), so the dialog never scrolls */
+dialog#lightbox[open] { display: flex; flex-direction: column; max-height: 96dvh; }
 html:has(dialog#lightbox[open]) { overflow: hidden; }
 .lb-prev, .lb-next {
   position: fixed; top: 50%; transform: translateY(-50%); z-index: 2;
@@ -190,8 +192,8 @@ html:has(dialog#lightbox[open]) { overflow: hidden; }
 .lb-prev:hover, .lb-next:hover { opacity: 1; color: #D49568; }
 .lb-prev[hidden], .lb-next[hidden] { display: none; }
 .lb-count { font-size: 12px; letter-spacing: .14em; color: #D49568; font-variant-numeric: tabular-nums; }
-dialog#lightbox img { max-width: 96vw; max-height: 86vh; width: auto; margin: 0 auto; }
-dialog#lightbox .lb-meta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 20px; margin-top: 12px; }
+dialog#lightbox img { max-width: 96vw; max-height: 86vh; width: auto; margin: 0 auto; flex: 0 1 auto; min-height: 0; object-fit: contain; }
+dialog#lightbox .lb-meta { flex: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 20px; margin-top: 12px; }
 dialog#lightbox .label { margin: 0; color: #BCAE9E; }
 .lb-map {
   display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 4px;
